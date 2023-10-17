@@ -1,18 +1,21 @@
 <?php
 
-class Database{
+class Database
+{
 
   private $connection;
-  public function __construct(){
+  public function __construct()
+  {
     $options = [
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
     ];
-    $this->connection = new PDO("mysql:host=localhost;dbname=newspapr",'root','', $options);
+    $this->connection = new PDO("mysql:host=localhost;dbname=newspaper", 'root', '', $options);
     // $this->connection->exec("SET CHARSET SET UTF8");
   }
 
-  public function getConnection(){
+  public function getConnection()
+  {
     return $this->connection;
   }
 }
