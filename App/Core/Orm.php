@@ -18,7 +18,7 @@ class Orm{
   */
   public function getAll(){
     //Creamos el statement de la query
-    $stm = $this->db->prepare("SELECT * FROM {$this->table}");
+    $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE estado_id = 1");
     $stm->execute();
     return $stm->fetchAll();
   }
