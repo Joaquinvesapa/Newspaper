@@ -8,3 +8,8 @@ define('URL', $url);//Guardamos la variable $url en una constante global URL
 // $url = explode('/',$url);
 $page = !empty($url) ? $url : 'Page';
 define('PAGE', $page);
+
+session_start();
+
+$_SESSION['admin'] = false;
+// session_destroy();
