@@ -5,6 +5,7 @@ RewriteEngine On
 # RewriteCond %[REQUEST_FILENAME] !-f
 # RewriteRule ^ index.php [QSA,L]
 RewriteRule ^([a-z]+)$ index.php/$1 [QSA]
+RewriteRule ^([a-z]+)/(\d+)$ index.php/$1 [QSA]
 RewriteRule ^([a-z]+)/([a-z]+)$ index.php/$1/$2 [QSA]
 
 

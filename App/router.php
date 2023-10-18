@@ -15,19 +15,23 @@ class Router
   {
 
     $url = explode('/', URL);
-
+    // var_dump(URL);
     $this->controller = !empty($url[1]) ? $url[1] : 'Landing';
     $this->method = !empty($url[2]) ? $url[2] : 'home';
+    // if (strlen($url) == 3) {
+    // } else {
+
+    // }
 
     // var_dump($this->controller);
     // var_dump($this->method);
 
     $this->controller = $this->controller . 'Controller'; //Generamos la ruta del controller de manera dinamica en base a la URL
     $controllerFile = __DIR__ . '/controllers/' . $this->controller . '.php';
-    if(file_exists($controllerFile)){
+    if (file_exists($controllerFile)) {
       require_once($controllerFile); //Requerimos el archivo del controller proporcionado en la URL
       // var_dump($controller);
-    }else{
+    } else {
       require_once(__DIR__ . '/controllers/NotFoundController.php'); //Requerimos el archivo del controller proporcionado en la URL
       $this->controller = 'NotFoundController';
 

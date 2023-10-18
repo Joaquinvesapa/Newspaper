@@ -1,18 +1,13 @@
 <?php
+require_once(__DIR__ . "/../Models/Usuario.php");
 
 class AdminController extends Controller
 {
-
-  public function __construct()
+  private $usuarioModel;
+  private $db;
+  public function __construct(PDO $connection)
   {
-    // if (isset($_SESSION)) {
-    //   echo json_encode($_SESSION['id']);
-    // } else {
-    //   // session_start();
-    //   // $_SESSION['id'] = 1;
-    // }
-
-
+    $this->db = $connection;
   }
 
   public function home()
@@ -23,13 +18,17 @@ class AdminController extends Controller
 
   public function login()
   {
-    // session_start();
+    $loginData = file_get_contents('php://input');
+    $body = json_decode($loginData, true);
+    $nombreUsuario = $body["nombreUsuario"];
+    $contraseña = $body["contraseña"];
 
-    // $_SESSION['id'] = 1;
-    $this->renderWithoutLayout('admin', []);
-    // echo json_encode($_SESSION['id']);
-    // header('Location: ' . URL_PATH);
+    $this->usuarioModel = new Usuario($this->db, $nombreUsuario, $contraseña);
 
+    $usuario = $this->usuarioModel->checkLogin();
+    echo json_encode($usuario);
+    return;
+    // echo json_encode($this->usuarioModel);
   }
 
   public static function logout()
