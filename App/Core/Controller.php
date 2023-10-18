@@ -13,4 +13,10 @@ class Controller
 
     require_once(__DIR__ . "/../Views/Layouts/" . $layout . ".layout.php");
   }
+
+  public function renderWithoutLayout($path, $parameters = [])
+  {
+    require_once(__DIR__ . "/../Views/" . $path . ".view.php");
+
+  }
 }

@@ -2,4 +2,126 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: system-ui;
+}
+
+header {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  /* justify-content: space-between; */
+  padding-inline: 25px;
+  align-items: center;
+  min-height: 50px;
+}
+section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+nav > a {
+  color: black;
+  padding-inline: 10px;
+  text-decoration: none;
+}
+header > a:first-child {
+  color: black;
+  padding-inline: 10px;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+header > div {
+  display: grid;
+  place-content: center;
+}
+.sessionbtn {
+  color: black;
+  /* background-color: black; */
+  padding: 5px;
+  border: 1px solid rgb(77, 76, 76);
+  border-radius: 4px;
+  /* padding-inline: 10px; */
+  text-decoration: none;
+  transition: all 0.25s;
+}
+
+.sessionbtn:hover {
+  background-color: rgb(226, 226, 226);
+}
+
+.end {
+  background-color: rgb(252, 171, 171);
+  border: 1px solid rgb(248, 81, 81);
+  color: rgb(159, 36, 36);
+}
+.end:hover {
+  background-color: rgb(246, 106, 106);
+}
+.menu {
+  display: none;
+}
+.responsive {
+  display: none;
+}
+
+@media (max-width: 1030px) {
+  .menu {
+    cursor: pointer;
+    display: block;
+    background-color: transparent;
+    border: none;
+  }
+  header {
+    justify-content: space-between;
+  }
+  section {
+    display: none;
+  }
+
+  .responsive {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    background-color: white;
+    z-index: 1000;
+    min-height: 100%;
+    color: white;
+  }
+  .responsive div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 25px;
+  }
+  .responsive .sessionbtn {
+    width: 100%;
+    text-align: center;
+  }
+  .responsive nav {
+    width: 100%;
+    padding-inline: 25px;
+    display: flex;
+    flex-direction: column;
+  }
+  .responsive nav a {
+    min-height: 60px;
+    border-bottom: 1px solid black;
+    display: flex;
+    align-items: center;
+  }
+}
+
+main {
+  position: relative;
+  min-height: 90vh;
+  top: 50px;
+}
+
+.none {
+  display: none;
 }

@@ -1,7 +1,8 @@
 <!-- <script src="/newspaper/Public/Assets/javascript/script.js"></script> -->
 <?php
 // Extraigo de los parametros la data, que es un array associativo
-$messages = $parameters['data']['mensajes'];
+$noticias = $parameters['data']['noticias'];
+var_dump($parameters);
 ?>
 <script src="/newspaper/Public/Assets/javascript/borrarMensaje.js "></script>
 
@@ -13,13 +14,13 @@ $messages = $parameters['data']['mensajes'];
   <button>enviar</button>
 </form>
 
-<?php foreach ($messages as $message) : ?>
+<?php foreach ($noticias as $noticia) : ?>
   <!--  Si el estado es distinto a uno, continuo el loop y no renderizo el mensaje -->
-  <?php if ($message['estado_id'] != 1) continue; ?>
-  <div class="message">
-    <h2><?php echo $message['nombre']; ?></h2>
-    <p><?php echo $message['mensaje']; ?></p>
-    <button id="borrar" data-noticiaid='<?php echo $message['id'] ?>'>Borrar</button>
+  <?php if ($noticia['estado_id'] != 1) continue; ?>
+  <div class="noticia">
+    <h2><?php echo $noticia['titulo']; ?></h2>
+    <p><?php echo $noticia['autor']; ?></p>
+    <button id="borrar" data-noticiaid='<?php echo $noticia['id'] ?>'>Borrar</button>
   </div>
 <?php endforeach; ?>
 <?php
