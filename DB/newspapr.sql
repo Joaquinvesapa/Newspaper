@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 15, 2023 at 12:28 AM
+-- Generation Time: Oct 19, 2023 at 05:30 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -104,13 +104,14 @@ CREATE TABLE `mensajes` (
 --
 
 INSERT INTO `mensajes` (`id`, `nombre`, `email`, `mensaje`, `estado_id`) VALUES
-(1, 'Juan Pérez', 'juan@example.com', 'Hola, me interesa su producto. ¿Podría proporcionarme más información?', 1),
+(1, 'Juan Pérez', 'juan@example.com', 'Hola, me interesa su producto. ¿Podría proporcionarme más información?', 2),
 (2, 'María Gómez', 'maria@example.com', 'Quisiera saber si tienen descuentos para compras al por mayor. Saludos.', 1),
 (3, 'Pepe', 'joaquinvesapa@gmail.com', 'Hola mundo', 2),
-(4, 'Ana Torres', 'ana@example.com', 'Felicidades por el nuevo producto. ¿Cuándo estará disponible en mi región?', 1),
+(4, 'Ana Torres', 'ana@example.com', 'Felicidades por el nuevo producto. ¿Cuándo estará disponible en mi región?', 2),
 (5, 'Luis García', 'luis@example.com', '¿Tienen alguna promoción especial para clientes frecuentes?', 1),
 (6, 'juancito', 'juancito@gmail.com', 'Hola mundo jajajaj', 1),
-(7, 'Paco', 'maria@gmail.com', 'JKJAKJAKA  mundo jajajaj', 1);
+(7, 'Paco', 'maria@gmail.com', 'JKJAKJAKA  mundo jajajaj', 1),
+(8, 'Virginia', 'Virginia@gmail.com', 'jfidoajdfi', 1);
 
 -- --------------------------------------------------------
 
@@ -137,6 +138,27 @@ INSERT INTO `noticias` (`id`, `titulo`, `autor`, `categoria_id`, `imagen_id`, `f
 (1, 'Título de la noticia 1', 'Autor 1', 1, 1, '2023-10-14 12:00:00', 'Contenido de la noticia 1', 1),
 (2, 'Título de la noticia 2', 'Autor 2', 2, 1, '2023-10-14 13:30:00', 'Contenido de la noticia 2', 1),
 (3, 'Título de la noticia 3', 'Autor 3', 3, 1, '2023-10-14 15:45:00', 'Contenido de la noticia 3', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usuarios`
+--
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL,
+  `apenom` varchar(30) DEFAULT NULL,
+  `nombre_usuario` varchar(40) DEFAULT NULL,
+  `contrasenia` varchar(30) DEFAULT NULL,
+  `estado_id` int(11) DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `apenom`, `nombre_usuario`, `contrasenia`, `estado_id`) VALUES
+(1, 'Joaquin Vesco Aparicio', 'admin', 'admin', 1);
 
 --
 -- Indexes for dumped tables
@@ -177,6 +199,13 @@ ALTER TABLE `noticias`
   ADD KEY `imagen_id` (`imagen_id`);
 
 --
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estado_id` (`estado_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -202,13 +231,19 @@ ALTER TABLE `imagenes`
 -- AUTO_INCREMENT for table `mensajes`
 --
 ALTER TABLE `mensajes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `noticias`
 --
 ALTER TABLE `noticias`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -227,6 +262,12 @@ ALTER TABLE `noticias`
   ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id`),
   ADD CONSTRAINT `noticias_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
   ADD CONSTRAINT `noticias_ibfk_3` FOREIGN KEY (`imagen_id`) REFERENCES `imagenes` (`id`);
+
+--
+-- Constraints for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
