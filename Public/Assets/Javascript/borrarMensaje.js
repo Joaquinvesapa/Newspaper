@@ -4,13 +4,13 @@ window.addEventListener("DOMContentLoaded", () => {
   deleteBtns.forEach((btn) => {
     btn.addEventListener("click", (e) => {
       // console.log(btn.dataset.noticiaid);
-      const id = btn.dataset.noticiaid;
-      borrarNoticia(id);
+      const id = btn.dataset.mensajeid;
+      borrarMensaje(id);
     });
   });
 });
 
-const borrarNoticia = (id) => {
+const borrarMensaje = (id) => {
   fetch("http://localhost/newspaper/mensajes/delete", {
     method: "POST",
     body: JSON.stringify({ id }),

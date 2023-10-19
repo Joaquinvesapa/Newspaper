@@ -10,8 +10,10 @@ RewriteEngine On
 # RewriteRule ^([a-z]+)/([a-z]+)$ index.php/$1/$2 [QSA]
 
 RewriteRule ^([a-z]+)$ index.php?con=$1 
+RewriteRule ^([a-z]+)/(crear)$ index.php?con=$1&met=$2 
 RewriteRule ^([a-z]+)/(\d+)$ index.php?con=$1&id=$2 
-RewriteRule ^(categorias)/([a-z]+)$ index.php?con=categorias&cat=$2 
+RewriteRule ^([a-z]+)/(\d+)/([a-z]+)$ index.php?con=$1&id=$2&met=$3 
+# RewriteRule ^(categorias)/([a-z]+)$ index.php?con=categorias&cat=$2 
 RewriteRule ^([a-z]+)/([a-z]+)$ index.php?con=$1&met=$2 
 
 # Cat -> controlador

@@ -13,14 +13,18 @@ class CategoriasController extends Controller{
     $this->render('categorias', [], 'layout');
 
   }
-  public function categoriaIndividual($nombreCategoria){
+  public function categoriaIndividual($idCategoria){
     $categoria = $this->categoriaModel->select([
-      "denominacion" => $nombreCategoria
+      "id" => $idCategoria
     ]);
-    $this->render('formularionoticia', [
-      'data' => [
-        'noticia' => $categoria
-      ]
-    ], 'layout');
+    if($categoria){
+      $this->render('formularionoticia', [
+        'data' => [
+          'noticia' => $categoria
+        ]
+      ], 'layout');
+    }else{
+      $this->render('notfound', [], 'layout');
+    }
   }
 }

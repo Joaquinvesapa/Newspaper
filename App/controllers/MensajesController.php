@@ -16,19 +16,19 @@ class MensajesController extends Controller
   {
     // require_once(__DIR__ . "/../Views/home.view.php");
     // $this->render('home', [], 'layout');
-    if(!isset($_SESSION['admin']) || $_SESSION['admin'] == false){
-      header('Location: /newspaper/noticias');
-    }
+    // if(!isset($_SESSION['admin']) || $_SESSION['admin'] == false){
+    //   header('Location: /newspaper/noticias');
+    // }
 
     $mensajes = $this->mensajeModel->getAll();
-    $this->render('home', [
+    $this->render('mensajes', [
       'data' => [
         'mensajes' => $mensajes
       ]
     ], 'layout');
 
     echo "<pre>";
-    var_dump($_SESSION['admin']);
+    // var_dump($_SESSION['admin']);
     var_dump($mensajes);
     echo "</pre>";
     // echo "<pre>";
