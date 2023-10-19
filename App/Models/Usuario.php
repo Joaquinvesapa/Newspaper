@@ -17,7 +17,7 @@ class Usuario extends Orm
     // return $this->nombreUsuario;
     return $this->select([
       "nombre_usuario" => $this->nombreUsuario,
-      "contraseña" => $this->contraseña
+      "contrasenia" => $this->contraseña
     ]);
   }
 }

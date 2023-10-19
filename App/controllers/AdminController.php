@@ -21,13 +21,24 @@ class AdminController extends Controller
     $loginData = file_get_contents('php://input');
     $body = json_decode($loginData, true);
     $nombreUsuario = $body["nombreUsuario"];
-    $contraseña = $body["contraseña"];
+    $contraseña = $body["contrasenia"];
 
     $this->usuarioModel = new Usuario($this->db, $nombreUsuario, $contraseña);
 
     $usuario = $this->usuarioModel->checkLogin();
-    echo json_encode($usuario);
-    return;
+    if ($usuario) {
+      // $_SESSION["ids"] = $usuario["id"];
+      // $_SESSION["apenom"] = $usuario["apenom"];
+      // $_SESSION["nombre_usuario"] = $usuario["nombre_usuario"];
+      // $_SESSION["contrasenia"] = $usuario["contrasenia"];
+      // header('Location: ' . URL_PATH . "/noticias");
+      echo json_encode($usuario);
+
+    } else {
+      echo json_encode("Hubo un Error");
+
+    }
+    // return;
     // echo json_encode($this->usuarioModel);
   }
 

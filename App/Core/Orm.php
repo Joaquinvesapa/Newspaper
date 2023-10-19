@@ -104,8 +104,8 @@ class Orm
     $stm = $this->db->prepare($sql);
 
     //Recorremos la data y asignamos a cada :campo su $valor
-    $stm->bindvalue(":{$key}", $value);
     foreach ($data as $key => $value) {
+      $stm->bindvalue(":{$key}", $value);
     }
     $stm->bindvalue(":estado_id", 1); //por defecto los registros se crean con estado "Activo" (1)
 
@@ -116,17 +116,17 @@ class Orm
   {
     $sql = "SELECT * FROM {$this->table} WHERE ";
     foreach ($data as $key => $value) {
-      $sql .= "{$key} = :{$key},";
+      $sql .= "{$key} = :{$key} AND ";
     }
-    $sql = trim($sql, ',');
+    $sql = trim($sql, "AND ");
     $stm = $this->db->prepare($sql);
 
     $a = '';
     foreach ($data as $key => $value) {
       $stm->bindvalue(":{$key}", $value);
-      // $a .= ":{$key}" . $value;
+      $a .= ":{$key}" . $value;
     }
-    // return $a;
+    // return $stm;
     $stm->execute();
 
     return $stm->fetchAll();

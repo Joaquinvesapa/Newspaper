@@ -10,7 +10,7 @@ const checkLogin = () => {
     method: "POST",
     body: JSON.stringify({
       nombreUsuario: "admin",
-      contraseña: "admin",
+      contrasenia: "admin",
     }),
     headers: {
       "Content-Type": "application/json",
