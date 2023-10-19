@@ -40,4 +40,13 @@ class NoticiasController extends Controller{
       ]
     ], 'layout');
   }
+
+  public function noticiaIndividual($id){
+    $noticia = $this->noticiaModel->getById($id);
+    $this->render('formularionoticia', [
+      'data' => [
+        'noticia' => $noticia
+      ]
+    ], 'layout');
+  }
 }

@@ -36,10 +36,12 @@
         <a href="<?= URL_PATH ?>/contacto">Contacto</a>
       </nav>
       <div>
-        <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin/login">Administración</a>
+        <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
       </div>
 
     </section>
+
+    <?php endif ?>
     <button class="menu"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24"
         height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
         stroke-linejoin="round">
@@ -55,8 +57,6 @@
         <path d="M18 6l-12 12"></path>
         <path d="M6 6l12 12"></path>
       </svg></button>
-
-    <?php endif ?>
   </header>
   <?php if (isLogged()): ?>
   <section class='section responsive none'>
@@ -73,7 +73,7 @@
   <?php else: ?>
   <section class="section responsive none">
     <div>
-      <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin/login">Administración</a>
+      <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
     </div>
     <nav>
       <a href="<?= URL_PATH ?>/noticias">Noticias</a>

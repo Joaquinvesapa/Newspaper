@@ -20,26 +20,28 @@ class AdminController extends Controller
   {
     $loginData = file_get_contents('php://input');
     $body = json_decode($loginData, true);
+    // return json_encode($body);
     $nombreUsuario = $body["nombreUsuario"];
     $contraseña = $body["contrasenia"];
 
     $this->usuarioModel = new Usuario($this->db, $nombreUsuario, $contraseña);
+    try{
+      $response =  $this->usuarioModel->checkLogin();
+      if($response){
+        $_SESSION['id'] = $response['id'];
+        $_SESSION['nombre_usuario'] = $response['nombre_usuario'];
+        $_SESSION['apenom'] = $response['id'];
+        var_dump($_SESSION);
+        echo json_encode(new Response($response));
 
-    $usuario = $this->usuarioModel->checkLogin();
-    if ($usuario) {
-      // $_SESSION["ids"] = $usuario["id"];
-      // $_SESSION["apenom"] = $usuario["apenom"];
-      // $_SESSION["nombre_usuario"] = $usuario["nombre_usuario"];
-      // $_SESSION["contrasenia"] = $usuario["contrasenia"];
-      // header('Location: ' . URL_PATH . "/noticias");
-      echo json_encode($usuario);
+      }else{
+        throw new Exception('No se encontro el usuario');
+      }
 
-    } else {
-      echo json_encode("Hubo un Error");
-
+    }catch(Exception $e){
+      $error = new Err($e->getMessage(), "Error");
+      echo json_encode($error);
     }
-    // return;
-    // echo json_encode($this->usuarioModel);
   }
 
   public static function logout()

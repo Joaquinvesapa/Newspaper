@@ -114,21 +114,26 @@ class Orm
 
   public function select($data)
   {
-    $sql = "SELECT * FROM {$this->table} WHERE ";
-    foreach ($data as $key => $value) {
-      $sql .= "{$key} = :{$key} AND ";
-    }
-    $sql = trim($sql, "AND ");
-    $stm = $this->db->prepare($sql);
+    // try{
+      $sql = "SELECT * FROM {$this->table} WHERE ";
+      foreach ($data as $key => $value) {
+        $sql .= "{$key} = :{$key} AND ";
+      }
+      $sql = trim($sql, "AND ");
+      $stm = $this->db->prepare($sql);
+  
+      $a = '';
+      foreach ($data as $key => $value) {
+        $stm->bindvalue(":{$key}", $value);
+        $a .= ":{$key}" . $value;
+      }
+      // return $stm;
+      $stm->execute();
+  
+      return $stm->fetch();
 
-    $a = '';
-    foreach ($data as $key => $value) {
-      $stm->bindvalue(":{$key}", $value);
-      $a .= ":{$key}" . $value;
-    }
-    // return $stm;
-    $stm->execute();
-
-    return $stm->fetchAll();
+    // }catch(PDOException $e){
+    //   return $e;
+    // }
   }
 }
