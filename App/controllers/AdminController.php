@@ -12,8 +12,11 @@ class AdminController extends Controller
 
   public function home()
   {
-    $this->renderWithoutLayout('admin', []);
-
+    if (isset($_SESSION["id"])) {
+      header("Location: /newspaper");
+    } else {
+      $this->renderWithoutLayout('admin', []);
+    }
   }
 
   public function login()
@@ -25,20 +28,20 @@ class AdminController extends Controller
     $contraseña = $body["contrasenia"];
 
     $this->usuarioModel = new Usuario($this->db, $nombreUsuario, $contraseña);
-    try{
-      $response =  $this->usuarioModel->checkLogin();
-      if($response){
+    try {
+      $response = $this->usuarioModel->checkLogin();
+      if ($response) {
         $_SESSION['id'] = $response['id'];
         $_SESSION['nombre_usuario'] = $response['nombre_usuario'];
         $_SESSION['apenom'] = $response['id'];
-        var_dump($_SESSION);
+        // var_dump($_SESSION);
         echo json_encode(new Response($response));
 
-      }else{
+      } else {
         throw new Exception('No se encontro el usuario');
       }
 
-    }catch(Exception $e){
+    } catch (Exception $e) {
       $error = new Err($e->getMessage(), "Error");
       echo json_encode($error);
     }

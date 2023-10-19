@@ -12,6 +12,8 @@
 </head>
 
 <body>
+  <div class="alertas">
+  </div>
   <main>
     <section>
       <h1>Login</h1>
@@ -25,6 +27,6 @@
     </section>
   </main>
 </body>
-<script src="<?= URL_PATH ?>/public/assets/javascript/admin.js"></script>
+<script type="module" src="<?= URL_PATH ?>/public/assets/javascript/admin.js"></script>
 
 </html>
