@@ -23,7 +23,6 @@ class AdminController extends Controller
   {
     $loginData = file_get_contents('php://input');
     $body = json_decode($loginData, true);
-    // return json_encode($body);
     $nombreUsuario = $body["nombreUsuario"];
     $contraseña = $body["contrasenia"];
 

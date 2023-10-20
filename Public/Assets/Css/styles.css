@@ -26,7 +26,7 @@ nav > a {
 }
 header > a:first-child {
   color: black;
-  padding-inline: 10px;
+  padding-inline: 0 10px;
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: bold;
@@ -75,7 +75,7 @@ header > div {
   header {
     justify-content: space-between;
   }
-  section {
+  .section {
     display: none;
   }
 
@@ -118,6 +118,7 @@ header > div {
 
 main {
   position: relative;
+  padding-inline: 25px;
   min-height: 90vh;
   top: 50px;
 }

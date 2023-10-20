@@ -1,0 +1,96 @@
+:root {
+  --main-btn-bg: #d3f2ff;
+  --main-btn-border: #80cbea;
+  --main-btn-hover: rgb(143, 221, 255);
+  --main-btn-color: #106489;
+}
+
+form {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 2 Columnas de 1 fraccion (100%) cada una */
+  gap: 1rem;
+}
+
+.text-section,
+.imagen-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.imagen-section {
+  justify-content: start;
+  padding-block: 10px;
+}
+label {
+  margin-bottom: 5px;
+}
+input,
+select,
+textarea,
+.label-img,
+.imagen {
+  margin-bottom: 10px;
+  height: 25px;
+  padding-inline: 6px;
+  border: 1px solid rgba(126, 126, 126, 0.432);
+  border-radius: 4px;
+  outline-color: #0cb2e49a;
+  font: inherit;
+  font-size: 14px;
+}
+textarea {
+  height: auto;
+  padding-block: 5px;
+}
+
+input[type="file"] {
+  display: none;
+}
+.label-img {
+  margin-top: 16px;
+  width: fit-content;
+  cursor: pointer;
+  background: var(--main-btn-bg);
+  border: 1px solid var(--main-btn-border);
+  color: var(--main-btn-color);
+  transition: all 0.25s;
+}
+.label-img:hover {
+  background: var(--main-btn-hover);
+}
+.imagen {
+  width: 100%;
+  min-height: 300px;
+  padding: 0;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  margin: 0;
+  overflow: hidden;
+}
+img {
+  width: inherit;
+  height: auto;
+}
+button {
+  cursor: pointer;
+  margin-top: 10px;
+  background: var(--main-btn-bg);
+  border: 1px solid var(--main-btn-border);
+  color: var(--main-btn-color);
+  font-weight: bold;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 18px;
+  outline-color: #0a7c9e;
+  transition: all 0.25s;
+}
+button:hover {
+  background: var(--main-btn-hover);
+}
+
+@media (max-width: 850px) {
+  form {
+    grid-template-columns: 1fr; /* 1 Columna */
+  }
+}

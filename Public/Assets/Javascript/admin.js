@@ -25,7 +25,7 @@ const checkLogin = (username, password) => {
       if (data.status === 200) {
         window.location.assign("/newspaper/noticias");
       } else {
-        // console.log(data);
+        console.log(data);
         handleNotification(data.error);
       }
     });
