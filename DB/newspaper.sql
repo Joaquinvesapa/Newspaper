@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 19, 2023 at 05:30 AM
+-- Generation Time: Oct 20, 2023 at 11:26 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,21 +29,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `categorias` (
   `id` int(11) NOT NULL,
-  `denominacion` varchar(50) DEFAULT NULL
+  `denominacion` varchar(50) DEFAULT NULL,
+  `estado_id` int(11) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `categorias`
 --
 
-INSERT INTO `categorias` (`id`, `denominacion`) VALUES
-(1, 'Educacion'),
-(2, 'Economia'),
-(3, 'Internacional'),
-(4, 'Salud'),
-(5, 'Politica'),
-(6, 'Deporte'),
-(7, 'Entretenimiento');
+INSERT INTO `categorias` (`id`, `denominacion`, `estado_id`) VALUES
+(1, 'Educacion', 1),
+(2, 'Economia', 1),
+(3, 'Internacional', 1),
+(4, 'Salud', 1),
+(5, 'Politica', 1),
+(6, 'Deporte', 1),
+(7, 'Entretenimiento', 1);
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,7 @@ CREATE TABLE `noticias` (
   `titulo` varchar(250) NOT NULL,
   `autor` varchar(50) NOT NULL,
   `categoria_id` int(11) NOT NULL,
-  `imagen_id` int(11) NOT NULL,
+  `imagen_url` varchar(250) NOT NULL,
   `fecha_hora` datetime NOT NULL,
   `texto` longtext NOT NULL,
   `estado_id` int(11) NOT NULL
@@ -168,7 +169,8 @@ INSERT INTO `usuarios` (`id`, `apenom`, `nombre_usuario`, `contrasenia`, `estado
 -- Indexes for table `categorias`
 --
 ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `estado_id` (`estado_id`);
 
 --
 -- Indexes for table `estados`
@@ -195,8 +197,7 @@ ALTER TABLE `mensajes`
 ALTER TABLE `noticias`
   ADD PRIMARY KEY (`id`),
   ADD KEY `estado_id` (`estado_id`),
-  ADD KEY `categoria_id` (`categoria_id`),
-  ADD KEY `imagen_id` (`imagen_id`);
+  ADD KEY `categoria_id` (`categoria_id`);
 
 --
 -- Indexes for table `usuarios`
@@ -250,6 +251,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Constraints for table `categorias`
+--
+ALTER TABLE `categorias`
+  ADD CONSTRAINT `categorias_ibfk_1` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id`);
+
+--
 -- Constraints for table `mensajes`
 --
 ALTER TABLE `mensajes`
@@ -260,8 +267,7 @@ ALTER TABLE `mensajes`
 --
 ALTER TABLE `noticias`
   ADD CONSTRAINT `noticias_ibfk_1` FOREIGN KEY (`estado_id`) REFERENCES `estados` (`id`),
-  ADD CONSTRAINT `noticias_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`),
-  ADD CONSTRAINT `noticias_ibfk_3` FOREIGN KEY (`imagen_id`) REFERENCES `imagenes` (`id`);
+  ADD CONSTRAINT `noticias_ibfk_2` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`);
 
 --
 -- Constraints for table `usuarios`
