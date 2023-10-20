@@ -134,10 +134,10 @@ CREATE TABLE `noticias` (
 -- Dumping data for table `noticias`
 --
 
-INSERT INTO `noticias` (`id`, `titulo`, `autor`, `categoria_id`, `imagen_id`, `fecha_hora`, `texto`, `estado_id`) VALUES
-(1, 'Título de la noticia 1', 'Autor 1', 1, 1, '2023-10-14 12:00:00', 'Contenido de la noticia 1', 1),
-(2, 'Título de la noticia 2', 'Autor 2', 2, 1, '2023-10-14 13:30:00', 'Contenido de la noticia 2', 1),
-(3, 'Título de la noticia 3', 'Autor 3', 3, 1, '2023-10-14 15:45:00', 'Contenido de la noticia 3', 2);
+INSERT INTO `noticias` (`id`, `titulo`, `autor`, `categoria_id`, `imagen_url`, `fecha_hora`, `texto`, `estado_id`) VALUES
+(1, 'Título de la noticia 1', 'Autor 1', 1, '../Fotos/debate.png', '2023-10-14 12:00:00', 'Contenido de la noticia 1', 1),
+(2, 'Título de la noticia 2', 'Autor 2', 2, '../Fotos/debate.png', '2023-10-14 13:30:00', 'Contenido de la noticia 2', 1),
+(3, 'Título de la noticia 3', 'Autor 3', 3, '../Fotos/economia-min-e1518715223904.png', '2023-10-14 15:45:00', 'Contenido de la noticia 3', 2);
 
 -- --------------------------------------------------------
 

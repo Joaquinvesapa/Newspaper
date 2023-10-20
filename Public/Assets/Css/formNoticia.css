@@ -6,7 +6,7 @@
 }
 
 form {
-  margin-top: 20px;
+  margin-top: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 Columnas de 1 fraccion (100%) cada una */
   gap: 1rem;
@@ -28,8 +28,7 @@ label {
 input,
 select,
 textarea,
-.label-img,
-.imagen {
+.label-img {
   margin-bottom: 10px;
   height: 25px;
   padding-inline: 6px;
@@ -60,19 +59,22 @@ input[type="file"] {
   background: var(--main-btn-hover);
 }
 .imagen {
-  width: 100%;
-  min-height: 300px;
+  /* width: 100%; */
+  height: 300px;
+
+  border: 1px solid rgba(126, 126, 126, 0.432);
+  border-radius: 4px;
   padding: 0;
-  aspect-ratio: 16/9;
-  object-fit: cover;
   margin: 0;
   overflow: hidden;
 }
 img {
-  width: inherit;
-  height: auto;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
-button {
+.btnEnviar {
   cursor: pointer;
   margin-top: 10px;
   background: var(--main-btn-bg);
@@ -85,7 +87,7 @@ button {
   outline-color: #0a7c9e;
   transition: all 0.25s;
 }
-button:hover {
+.btnEnviar:hover {
   background: var(--main-btn-hover);
 }
 

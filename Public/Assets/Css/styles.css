@@ -9,6 +9,9 @@ header {
   position: fixed;
   width: 100%;
   display: flex;
+  z-index: 10000;
+  background-color: white;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.368);
   /* justify-content: space-between; */
   padding-inline: 25px;
   align-items: center;
@@ -121,8 +124,8 @@ main {
   padding-inline: 25px;
   min-height: 90vh;
   top: 50px;
+  padding-block: 10px;
 }
-
 .none {
   display: none;
 }

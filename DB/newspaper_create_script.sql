@@ -33,13 +33,12 @@ CREATE TABLE noticias(
   titulo varchar(250) NOT NULL,
   autor varchar(50) NOT NULL,
   categoria_id int NOT NULL,
-  imagen_id int NOT NULL,
+  imagen_url varchar(250) NOT NULL,
   fecha_hora datetime NOT NULL,
   texto longtext NOT NULL,
   estado_id int NOT NULL,
   FOREIGN KEY (estado_id) REFERENCES estados(id),
-  FOREIGN KEY (categoria_id) REFERENCES categorias(id),
-  FOREIGN KEY (imagen_id) REFERENCES imagenes(id)
+  FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 )
 
 ----------------------------------------------------------------------------------------?
