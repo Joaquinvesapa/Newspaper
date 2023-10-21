@@ -20,3 +20,8 @@ function moveImage($image)
   return $src;
 
 }
+
+function formatearFecha($fecha)
+{
+  return date_format(date_create($fecha), "d/m/Y");
+}

@@ -3,36 +3,37 @@
 require_once(__DIR__ . "/../Models/Noticia.php");
 
 
-class NoticiasController extends Controller{
+class NoticiasController extends Controller
+{
 
   private $noticiaModel;
-  
-  public function __construct(PDO $conection){
+
+  public function __construct(PDO $conection)
+  {
     $this->noticiaModel = new Noticia($conection);
-    
+
   }
 
-  public function home(){
+  public function home()
+  {
     // require_once(__DIR__ . "/../Views/home.view.php");
     // $this->render('home', [], 'layout');
 
     $noticias = $this->noticiaModel->getAll();
-    $this->render('home', [
+    $this->render('noticias', [
       'data' => [
         'noticias' => $noticias
       ]
     ], 'layout');
-    echo "<pre>";
-    // var_dump($_SESSION['admin']);
-    // var_dump($noticias);
-    echo "</pre>";
   }
 
-  public function crear(){
+  public function crear()
+  {
     $this->render('formularionoticia', [], 'layout');
 
   }
-  public function editar(){
+  public function editar()
+  {
     $noticia = $this->noticiaModel->getById(1);
     $this->render('formularionoticia', [
       'data' => [
@@ -41,7 +42,8 @@ class NoticiasController extends Controller{
     ], 'layout');
   }
 
-  public function noticiaIndividual($id){
+  public function noticiaIndividual($id)
+  {
     $noticia = $this->noticiaModel->getById($id);
     $this->render('formularionoticia', [
       'data' => [

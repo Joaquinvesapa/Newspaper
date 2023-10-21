@@ -8,6 +8,7 @@ $categorias = $categoriasModel->getAll();
 $noticiasModel = new Noticia($conection);
 
 $isEditar = false;
+//Si llega informacion del controller, es que se quiere editar una noticia
 if (isset($parameters['data'])) {
   $isEditar = true;
   $noticia = $parameters['data']['noticia'];
