@@ -38,12 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $noticiasModel->insert($data);
 
   }
+  header("Location: /newspaper/noticias");
 }
 ?>
 <?php if (!$isEditar): ?>
-<h3>Crear Noticia</h3>
+  <h3>Crear Noticia</h3>
 <?php else: ?>
-<h3>Editar Noticia</h3>
+  <h3>Editar Noticia</h3>
 <?php endif ?>
 
 <form action="" method="POST" enctype="multipart/form-data">
@@ -75,13 +76,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <select placeholder="Categoria" type="text" name="categoria" id="categoria">
       <option value="" disabled selected hidden>Categoria</option>
       <?php if (isset($categorias)): ?>
-      <?php foreach ($categorias as $key => $categoria): ?>
-      <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
+        <?php foreach ($categorias as $key => $categoria): ?>
+          <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
               echo "selected";
             } ?>>
-        <?= $categoria["denominacion"] ?>
-      </option>
-      <?php endforeach; ?>
+            <?= $categoria["denominacion"] ?>
+          </option>
+        <?php endforeach; ?>
       <?php endif; ?>
     </select>
 
@@ -102,12 +103,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="inpImagen" class="label-img">Agregar Imagen</label>
     <div class="imagen">
       <?php if (isset($noticia)): ?>
-      <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
+        <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
       <?php endif ?>
       <!-- <img src="../Fotos\debate.png" alt=""> -->
     </div>
   </section>
 
-  <button class="btnEnviar"><?php if(isset($noticia)){echo "Editar";}else{echo "Crear";}?></button>
+  <button class="btnEnviar">
+    <?php if (isset($noticia)) {
+      echo "Editar";
+    } else {
+      echo "Crear";
+    } ?>
+  </button>
 </form>
 <script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>
