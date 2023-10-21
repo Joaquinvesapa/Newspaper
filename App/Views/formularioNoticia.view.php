@@ -5,10 +5,39 @@ $conection = $db->getConnection();
 $categoriasModel = new Categoria($conection);
 $categorias = $categoriasModel->getAll();
 
+$noticiasModel = new Noticia($conection);
+
 $isEditar = false;
 if (isset($parameters['data'])) {
   $isEditar = true;
   $noticia = $parameters['data']['noticia'];
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+  //Movemos la imagen y obtenemos su ruta
+  $imagenUrl = moveImage($_FILES['imagen']);
+
+  //Creamos la data que vamos a enviar
+  $data = array(
+    'titulo' => $_POST['titulo'],
+    'autor' => $_POST['autor'],
+    'fecha_hora' => $_POST['fecha'],
+    'categoria_id' => $_POST['categoria'],
+    'texto' => $_POST['cuerpo'],
+    'imagen_url' => $imagenUrl
+  );
+
+  //Actualizamos o insertamos dependiendo de si estamos en editar(isset($noticia)) o en crear
+  if (isset($noticia)) {
+
+    $noticiasModel->updateById($noticia['id'], $data);
+
+  } else {
+
+    $noticiasModel->insert($data);
+
+  }
 }
 ?>
 <?php if (!$isEditar): ?>
@@ -73,12 +102,12 @@ if (isset($parameters['data'])) {
     <label for="inpImagen" class="label-img">Agregar Imagen</label>
     <div class="imagen">
       <?php if (isset($noticia)): ?>
-      <img src="<?= "../" . $noticia["imagen_url"] ?>" alt="">
+      <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
       <?php endif ?>
       <!-- <img src="../Fotos\debate.png" alt=""> -->
     </div>
   </section>
 
-  <button class="btnEnviar">Enviar</button>
+  <button class="btnEnviar"><?php if(isset($noticia)){echo "Editar";}else{echo "Crear";}?></button>
 </form>
 <script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>
