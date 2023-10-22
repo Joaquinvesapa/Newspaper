@@ -2,7 +2,12 @@
 $noticias = $parameters['data']['noticias'];
 // $noticias = json_encode($data);
 ?>
-<h2>Todas las Noticias</h2>
+<section class="main-top">
+  <h2>Todas las Noticias</h2>
+  <?php if (isLogged()): ?>
+  <a href="<?= URL_PATH ?>/noticias/crear">Crear Noticia</a>
+  <?php endif ?>
+</section>
 <section class="noticias-container">
   <?php foreach ($noticias as $key => $noticia): ?>
   <article class="article-noticia">

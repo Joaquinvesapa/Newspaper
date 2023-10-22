@@ -42,12 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   header("Location: /newspaper/noticias");
 }
 ?>
-<?php if (!$isEditar): ?>
-  <h3>Crear Noticia</h3>
-<?php else: ?>
-  <h3>Editar Noticia</h3>
-<?php endif ?>
+<div class="main-top">
+  <?php if (!$isEditar): ?>
 
+  <h2>Crear Noticia</h2>
+  <?php else: ?>
+  <h2>Editar Noticia</h2>
+  <?php endif ?>
+</div>
 <form action="" method="POST" enctype="multipart/form-data">
 
   <section class="text-section">
@@ -77,13 +79,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <select placeholder="Categoria" type="text" name="categoria" id="categoria">
       <option value="" disabled selected hidden>Categoria</option>
       <?php if (isset($categorias)): ?>
-        <?php foreach ($categorias as $key => $categoria): ?>
-          <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
+      <?php foreach ($categorias as $key => $categoria): ?>
+      <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
               echo "selected";
             } ?>>
-            <?= $categoria["denominacion"] ?>
-          </option>
-        <?php endforeach; ?>
+        <?= $categoria["denominacion"] ?>
+      </option>
+      <?php endforeach; ?>
       <?php endif; ?>
     </select>
 
@@ -104,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="inpImagen" class="label-img">Agregar Imagen</label>
     <div class="imagen">
       <?php if (isset($noticia)): ?>
-        <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
+      <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
       <?php endif ?>
       <!-- <img src="../Fotos\debate.png" alt=""> -->
     </div>

@@ -1,1 +1,1 @@
-<h1>Desde Categorias</h1>
+<h2>Desde Categorias</h2>

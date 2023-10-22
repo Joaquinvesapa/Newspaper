@@ -13,21 +13,19 @@ form {
 
 .imagen-section {
   justify-content: start;
-  padding-block: 10px;
 }
 label {
   margin-bottom: 5px;
 }
 input,
 select,
-textarea,
-.label-img {
+textarea {
   margin-bottom: 10px;
   height: 25px;
   padding-inline: 6px;
-  border: 1px solid;
+  border: 1px solid var(--grey);
   border-radius: 4px;
-  outline-color: #0cb2e49a;
+  outline-color: var(--primary);
   font: inherit;
   font-size: 14px;
 }
@@ -40,16 +38,18 @@ input[type="file"] {
   display: none;
 }
 .label-img {
-  margin-top: 16px;
   width: fit-content;
   cursor: pointer;
-  background: var(--main-btn-bg);
-  border: 1px solid var(--main-btn-border);
-  color: var(--main-btn-color);
+  background: var(--primary-light);
+  color: white;
+  padding: 0.3rem;
+  border-radius: 0.3rem;
+  font-weight: bold;
+  font-size: 0.8rem;
   transition: all 0.25s;
 }
 .label-img:hover {
-  background: var(--main-btn-hover);
+  background: var(--primary-darker);
 }
 .imagen {
   /* width: 100%; */
@@ -70,18 +70,17 @@ img {
 .btnEnviar {
   cursor: pointer;
   margin-top: 10px;
-  background: var(--main-btn-bg);
-  border: 1px solid var(--main-btn-border);
-  color: var(--main-btn-color);
+  background: var(--primary);
+  color: white;
+  border: none;
   font-weight: bold;
   height: 40px;
-  border-radius: 4px;
-  font-size: 18px;
-  outline-color: #0a7c9e;
+  border-radius: 0.3rem;
+  font-size: 1rem;
   transition: all 0.25s;
 }
 .btnEnviar:hover {
-  background: var(--main-btn-hover);
+  background: var(--primary-darker);
 }
 
 @media (max-width: 850px) {
