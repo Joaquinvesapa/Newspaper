@@ -10,7 +10,12 @@ class CategoriasController extends Controller{
   }
 
   public function home(){
-    $this->render('categorias', [], 'layout');
+    $categorias = $this->categoriaModel->getAll();
+    $this->render('categorias', [
+      'data' => [
+        'categorias' => $categorias
+      ]
+    ], 'layout');
 
   }
   public function categoriaIndividual($idCategoria){
@@ -18,7 +23,7 @@ class CategoriasController extends Controller{
       "id" => $idCategoria
     ]);
     if($categoria){
-      $this->render('formularionoticia', [
+      $this->render('noticiaIndivisual', [
         'data' => [
           'noticia' => $categoria
         ]

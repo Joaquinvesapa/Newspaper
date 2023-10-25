@@ -1,5 +1,6 @@
 <?php
 $noticias = $parameters['data']['noticias'];
+// var_dump(json_encode($noticias));
 // $noticias = json_encode($data);
 ?>
 <section class="main-top">
