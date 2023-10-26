@@ -23,10 +23,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $data = array(
     'titulo' => $_POST['titulo'],
     'autor' => $_POST['autor'],
+    'ubicacion' => $_POST['ubicacion'],
     'fecha_hora' => $_POST['fecha'],
     'categoria_id' => $_POST['categoria'],
     'cuerpo' => $_POST['cuerpo'],
-    'imagen_url' => $imagenUrl
+    'imagen_url' => $isEditar ? $noticia["imagen_url"] : $imagenUrl
   );
 
   //Actualizamos o insertamos dependiendo de si estamos en editar(isset($noticia)) o en crear
@@ -64,6 +65,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="autor">Autor</label>
     <input placeholder="Autor" type="text" name="autor" id="autor" value="<?php if (isset($noticia)) {
       echo $noticia["autor"];
+    } else {
+      echo "";
+    } ?>">
+    <label for="ubicacion">Ubicacion</label>
+    <input placeholder="ubicacion" type="text" name="ubicacion" id="ubicacion" value="<?php if (isset($noticia)) {
+      echo $noticia["ubicacion"];
     } else {
       echo "";
     } ?>">
