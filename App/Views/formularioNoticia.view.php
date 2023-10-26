@@ -29,6 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'cuerpo' => $_POST['cuerpo'],
     'imagen_url' => $isEditar ? $noticia["imagen_url"] : $imagenUrl
   );
+  // echo "<pre>";
+  // print_r($_POST['cuerpo']);
+  // echo "</pre>";
 
   //Actualizamos o insertamos dependiendo de si estamos en editar(isset($noticia)) o en crear
   if (isset($noticia)) {
@@ -97,13 +100,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </select>
 
     <label for="cuerpo">Cuerpo</label>
-    <textarea name="cuerpo" id="cuerpo" cols="30" rows="15" placeholder="Cuerpo">
-    <?php if (isset($noticia)) {
-      echo $noticia["cuerpo"];
-    } else {
-      echo "";
-    } ?>
+    <textarea name="cuerpo" id="editor">
+    <?php echo isset($noticia) ? $noticia["cuerpo"] : null ?>
     </textarea>
+
+    <!-- <textarea name="cuerpo" id="cuerpo" cols="30" rows="15" placeholder="Cuerpo">
+    </textarea> -->
 
   </section>
 
@@ -128,3 +130,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   </button>
   <script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>
 </form>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+<script>
+ClassicEditor
+  .create(document.querySelector('#editor'))
+  .catch(error => {
+    console.error(error);
+  });
+</script>
