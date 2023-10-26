@@ -8,6 +8,7 @@
     <?php echo substr(PAGE, 1); ?>
   </title>
   <link rel="stylesheet" href="/newspaper/public/assets/css/noticias.css">
+  <link rel="stylesheet" href="/newspaper/public/assets/css/noticia.css">
   <link rel="stylesheet" href="<?= URL_PATH ?>/public/assets/css/formNoticia.css">
   <link rel="stylesheet" href="/newspaper/public/assets/css/styles.css">
 

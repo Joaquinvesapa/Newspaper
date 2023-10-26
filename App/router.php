@@ -23,19 +23,19 @@ class Router
 
     //Generamos la ruta del controller de manera dinamica en base a la URL
     $this->controller = $controller . 'Controller';
-    
+
     $controllerFile = __DIR__ . '/controllers/' . $this->controller . '.php';
-    
+
     if (file_exists($controllerFile)) {
 
-       //Requerimos el archivo del controller proporcionado en la URL
+      //Requerimos el archivo del controller proporcionado en la URL
       require_once($controllerFile);
 
     } else {
 
       //Requerimos el archivo del controller proporcionado en la URL
-      require_once(__DIR__ . '/controllers/NotFoundController.php'); 
-      $this->controller = 'NotFoundController'; 
+      require_once(__DIR__ . '/controllers/NotFoundController.php');
+      $this->controller = 'NotFoundController';
 
       $controller = new $this->controller();
       $method = $this->method;
@@ -48,19 +48,29 @@ class Router
 
   public function run()
   {
-    
+
     $database = new Database();
     $conection = $database->getConnection();
-    
-    $methodIndividual = str_replace("sController",'',$this->controller)."Individual";
-    
-    $controller = new $this->controller($conection);  
 
-    if($this->id){
-      $controller->$methodIndividual($this->id);
-    }else{
-      $method = $this->method;
-  
+    $methodIndividual = str_replace("sController", '', $this->controller) . "Individual";
+
+    $controller = new $this->controller($conection);
+
+    $method = $this->method;
+
+    if ($this->id) {
+
+      if ($method == "editar") {
+
+        $controller->$method($this->id);
+
+      } else {
+
+        $controller->$methodIndividual($this->id);
+
+      }
+    } else {
+
       $controller->$method();
     }
   }

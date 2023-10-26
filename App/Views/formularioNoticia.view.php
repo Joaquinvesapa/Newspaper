@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'autor' => $_POST['autor'],
     'fecha_hora' => $_POST['fecha'],
     'categoria_id' => $_POST['categoria'],
-    'texto' => $_POST['cuerpo'],
+    'cuerpo' => $_POST['cuerpo'],
     'imagen_url' => $imagenUrl
   );
 
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="cuerpo">Cuerpo</label>
     <textarea name="cuerpo" id="cuerpo" cols="30" rows="15" placeholder="Cuerpo">
     <?php if (isset($noticia)) {
-      echo $noticia["texto"];
+      echo $noticia["cuerpo"];
     } else {
       echo "";
     } ?>
@@ -119,5 +119,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "Crear";
     } ?>
   </button>
+  <script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>
 </form>
-<script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>

@@ -32,9 +32,9 @@ class NoticiasController extends Controller
     $this->render('formularionoticia', [], 'layout');
 
   }
-  public function editar()
+  public function editar($id)
   {
-    $noticia = $this->noticiaModel->getById(1);
+    $noticia = $this->noticiaModel->getById($id);
     $this->render('formularionoticia', [
       'data' => [
         'noticia' => $noticia
@@ -45,7 +45,7 @@ class NoticiasController extends Controller
   public function noticiaIndividual($id)
   {
     $noticia = $this->noticiaModel->getById($id);
-    $this->render('formularionoticia', [
+    $this->render('noticiaIndividual', [
       'data' => [
         'noticia' => $noticia
       ]

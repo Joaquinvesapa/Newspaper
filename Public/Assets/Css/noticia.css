@@ -1,0 +1,32 @@
+.noticia-container {
+  display: flex;
+  /* align-items: center; */
+  margin-block: 1rem;
+  flex-direction: column;
+  padding-inline: 100px;
+}
+.noticia-container h2 {
+  margin-bottom: 1rem;
+}
+.section-imagen {
+  width: 100%;
+}
+.cuerpo {
+  display: flex;
+  flex-direction: column;
+}
+.cuerpo-info {
+  margin-block: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.cuerpo-fechahora {
+  font-weight: bold;
+}
+
+@media (max-width: 1030px) {
+  .noticia-container {
+    padding-inline: 0;
+  }
+}
