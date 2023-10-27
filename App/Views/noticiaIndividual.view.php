@@ -1,6 +1,7 @@
 <?php
 $noticia = $parameters['data']['noticia']
   ?>
+<link rel="stylesheet" href="/newspaper/public/assets/css/noticia.css">
 
 <section class="noticia-container">
   <h2>
@@ -17,7 +18,9 @@ $noticia = $parameters['data']['noticia']
         </i>
       </span>
       <span class="cuerpo-fechahora">
-        <?= formatearFecha($noticia["fecha_hora"]) ?>
+        <i>
+          <?= formatearFecha($noticia["fecha_hora"]) ?>
+        </i>
       </span>
     </div>
     <article>

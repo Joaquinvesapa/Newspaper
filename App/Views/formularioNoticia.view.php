@@ -27,11 +27,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'fecha_hora' => $_POST['fecha'],
     'categoria_id' => $_POST['categoria'],
     'cuerpo' => $_POST['cuerpo'],
-    'imagen_url' => $isEditar ? $noticia["imagen_url"] : $imagenUrl
+    'imagen_url' => $imagenUrl
   );
-  // echo "<pre>";
-  // print_r($_POST['cuerpo']);
-  // echo "</pre>";
 
   //Actualizamos o insertamos dependiendo de si estamos en editar(isset($noticia)) o en crear
   if (isset($noticia)) {
@@ -46,12 +43,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   header("Location: /newspaper/noticias");
 }
 ?>
+
 <div class="main-top">
   <?php if (!$isEditar): ?>
 
-  <h2>Crear Noticia</h2>
+    <h2>Crear Noticia</h2>
   <?php else: ?>
-  <h2>Editar Noticia</h2>
+    <h2>Editar Noticia</h2>
   <?php endif ?>
 </div>
 <form action="" method="POST" enctype="multipart/form-data">
@@ -89,13 +87,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <select placeholder="Categoria" type="text" name="categoria" id="categoria">
       <option value="" disabled selected hidden>Categoria</option>
       <?php if (isset($categorias)): ?>
-      <?php foreach ($categorias as $key => $categoria): ?>
-      <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
+        <?php foreach ($categorias as $key => $categoria): ?>
+          <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
               echo "selected";
             } ?>>
-        <?= $categoria["denominacion"] ?>
-      </option>
-      <?php endforeach; ?>
+            <?= $categoria["denominacion"] ?>
+          </option>
+        <?php endforeach; ?>
       <?php endif; ?>
     </select>
 
@@ -103,9 +101,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <textarea name="cuerpo" id="editor">
     <?php echo isset($noticia) ? $noticia["cuerpo"] : null ?>
     </textarea>
-
-    <!-- <textarea name="cuerpo" id="cuerpo" cols="30" rows="15" placeholder="Cuerpo">
-    </textarea> -->
 
   </section>
 
@@ -115,9 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <label for="inpImagen" class="label-img">Agregar Imagen</label>
     <div class="imagen">
       <?php if (isset($noticia)): ?>
-      <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
+        <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
       <?php endif ?>
-      <!-- <img src="../Fotos\debate.png" alt=""> -->
     </div>
   </section>
 
@@ -128,13 +122,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "Crear";
     } ?>
   </button>
-  <script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>
 </form>
 <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-<script>
-ClassicEditor
-  .create(document.querySelector('#editor'))
-  .catch(error => {
-    console.error(error);
-  });
-</script>
+<script src="<?= URL_PATH ?>/public/assets/javascript/formNoticia.js"></script>

@@ -7,10 +7,8 @@
   <title>
     <?php echo substr(PAGE, 1); ?>
   </title>
-  <link rel="stylesheet" href="/newspaper/public/assets/css/noticias.css">
-  <link rel="stylesheet" href="/newspaper/public/assets/css/noticia.css">
-  <link rel="stylesheet" href="<?= URL_PATH ?>/public/assets/css/formNoticia.css">
   <link rel="stylesheet" href="/newspaper/public/assets/css/styles.css">
+  <link rel="stylesheet" href="<?= URL_PATH ?>/public/assets/css/formNoticia.css">
 
 </head>
 
@@ -21,29 +19,29 @@
       Newspaper
     </a>
     <?php if (isLogged()): ?>
-    <section class="section">
-      <nav>
-        <a href="<?= URL_PATH ?>/noticias">Noticias</a>
-        <a href="<?= URL_PATH ?>/categorias">Categorias</a>
-        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-        <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
-      </nav>
-      <div>
-        <a class="sessionbtn" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesion</a>
-      </div>
-    </section>
+      <section class="section">
+        <nav>
+          <a href="<?= URL_PATH ?>/noticias">Noticias</a>
+          <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+          <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+          <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
+        </nav>
+        <div>
+          <a class="sessionbtn" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesion</a>
+        </div>
+      </section>
     <?php else: ?>
-    <section class='section'>
-      <nav>
-        <a href="<?= URL_PATH ?>/noticias">Noticias</a>
-        <a href="<?= URL_PATH ?>/categorias">Categorias</a>
-        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-      </nav>
-      <div>
-        <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
-      </div>
+      <section class='section'>
+        <nav>
+          <a href="<?= URL_PATH ?>/noticias">Noticias</a>
+          <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+          <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+        </nav>
+        <div>
+          <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
+        </div>
 
-    </section>
+      </section>
 
     <?php endif ?>
     <button class="menu"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24"
@@ -63,29 +61,29 @@
       </svg></button>
   </header>
   <?php if (isLogged()): ?>
-  <section class='section responsive none'>
-    <div>
-      <a class="sessionbtn end" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesion</a>
-    </div>
-    <nav>
-      <a href="<?= URL_PATH ?>/noticias">Noticias</a>
-      <a href="<?= URL_PATH ?>/categorias">Categorias</a>
-      <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-      <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
-    </nav>
-  </section>
+    <section class='section responsive none'>
+      <div>
+        <a class="sessionbtn end" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesion</a>
+      </div>
+      <nav>
+        <a href="<?= URL_PATH ?>/noticias">Noticias</a>
+        <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+        <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
+      </nav>
+    </section>
   <?php else: ?>
-  <section class="section responsive none">
-    <div>
-      <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
-    </div>
-    <nav>
-      <a href="<?= URL_PATH ?>/noticias">Noticias</a>
-      <a href="<?= URL_PATH ?>/categorias">Categorias</a>
-      <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-    </nav>
+    <section class="section responsive none">
+      <div>
+        <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
+      </div>
+      <nav>
+        <a href="<?= URL_PATH ?>/noticias">Noticias</a>
+        <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+      </nav>
 
-  </section>
+    </section>
   <?php endif; ?>
   <main>
     <!-- <button id="mostrarmenu">Mostrar menu</button> -->
