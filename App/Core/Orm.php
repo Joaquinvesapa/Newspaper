@@ -18,10 +18,19 @@ class Orm
    * @param  object  $object The object to convert
    * @return array
    */
-  public function getAll()
+  public function getAll($params)
   {
+    $joins = "";
+    if (isset($params["joins"])) {
+      foreach ($params["joins"] as $key => $join) {
+        $joins .= $join;
+      }
+      $stm = $this->db->prepare("SELECT {$params['columns']} FROM {$this->table} {$joins} WHERE {$this->table}.estado_id = 1");
+      $stm->execute();
+      return $stm->fetchAll();
+    }
     //Creamos el statement de la query
-    $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE estado_id = 1");
+    $stm = $this->db->prepare("SELECT {$params['columns']} FROM {$this->table} WHERE {$this->table}.estado_id = 1");
     $stm->execute();
     return $stm->fetchAll();
   }
@@ -30,12 +39,23 @@ class Orm
    * @param  int $id del registro a listar
    * @return array 
    */
-  public function getById($id)
+  public function getById($id, $inner = null)
   {
-    $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
-    $stm->bindvalue(":id", $id);
-    $stm->execute();
-    return $stm->fetch();
+    $innerQuery = "";
+    if ($inner != null) {
+      $tablaSingularId = trim($inner["table"], 's') . "_id";
+      $innerQuery = "INNER JOIN {$inner["table"]} ON {$inner["table"]}.id = {$this->table}.$tablaSingularId";
+      $stm = $this->db->prepare("SELECT * FROM {$this->table} $innerQuery WHERE {$this->table}.id = :id");
+
+      $stm->bindvalue(":id", $id);
+      $stm->execute();
+      return $stm->fetch();
+    } else {
+      $stm = $this->db->prepare("SELECT * FROM {$this->table} WHERE id = :id");
+      $stm->bindvalue(":id", $id);
+      $stm->execute();
+      return $stm->fetch();
+    }
   }
 
   /** Baja logica de la base de datos cambiando estado a inactivo
@@ -115,22 +135,22 @@ class Orm
   public function select($data)
   {
     // try{
-      $sql = "SELECT * FROM {$this->table} WHERE ";
-      foreach ($data as $key => $value) {
-        $sql .= "{$key} = :{$key} AND ";
-      }
-      $sql = trim($sql, "AND ");
-      $stm = $this->db->prepare($sql);
-  
-      $a = '';
-      foreach ($data as $key => $value) {
-        $stm->bindvalue(":{$key}", $value);
-        $a .= ":{$key}" . $value;
-      }
-      // return $stm;
-      $stm->execute();
-  
-      return $stm->fetch();
+    $sql = "SELECT * FROM {$this->table} WHERE ";
+    foreach ($data as $key => $value) {
+      $sql .= "{$key} = :{$key} AND ";
+    }
+    $sql = trim($sql, "AND ");
+    $stm = $this->db->prepare($sql);
+
+    $a = '';
+    foreach ($data as $key => $value) {
+      $stm->bindvalue(":{$key}", $value);
+      $a .= ":{$key}" . $value;
+    }
+    // return $stm;
+    $stm->execute();
+
+    return $stm->fetch();
 
     // }catch(PDOException $e){
     //   return $e;

@@ -1,6 +1,6 @@
 <?php
-$noticia = $parameters['data']['noticia']
-  ?>
+$noticia = $parameters['data']['noticia'];
+?>
 <link rel="stylesheet" href="/newspaper/public/assets/css/noticia.css">
 
 <section class="noticia-container">
@@ -15,6 +15,7 @@ $noticia = $parameters['data']['noticia']
       <span class="cuerpo-autor">Por
         <i>
           <?= $noticia["autor"] ?>
+          <!-- <?= $noticia["denominacion"] ?> -->
         </i>
       </span>
       <span class="cuerpo-fechahora">

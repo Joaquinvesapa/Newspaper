@@ -94,11 +94,21 @@
   color: rgba(62, 62, 62, 0.752);
 }
 
-.article-noticia-edit-section {
+.article-noticia-categoria {
   width: 100%;
-  /* padding-inline: 1rem; */
+  min-height: 1.5rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.article-noticia-categoria > a:first-child {
+  color: rgba(62, 62, 62, 0.752);
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.article-noticia-categoria > a:first-child:hover {
+  text-decoration: underline;
 }
 
 .article-noticia-edit-link {
