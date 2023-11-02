@@ -11,6 +11,7 @@ RewriteEngine On
 
 RewriteRule ^([a-z]+)$ index.php?con=$1 
 RewriteRule ^([a-z]+)/(crear)$ index.php?con=$1&met=$2 
+RewriteRule ^([a-z]+)/(pagina)/(\d+)$ index.php?con=$1&met=$2&id=$3 
 RewriteRule ^([a-z]+)/(\d+)$ index.php?con=$1&id=$2 
 RewriteRule ^([a-z]+)/(\d+)/([a-z]+)$ index.php?con=$1&id=$2&met=$3 
 # RewriteRule ^(categorias)/([a-z]+)$ index.php?con=categorias&cat=$2 

@@ -60,7 +60,7 @@ class Router
 
     if ($this->id) {
 
-      if ($method == "editar") {
+      if ($method == "editar" || $method == "pagina") {
 
         $controller->$method($this->id);
 

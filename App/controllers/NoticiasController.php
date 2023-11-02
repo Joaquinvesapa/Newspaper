@@ -29,7 +29,7 @@ class NoticiasController extends Controller
 
     $params["joins"] = ["INNER JOIN categorias ON categorias.id = noticias.categoria_id"];
 
-    $noticias = $this->noticiaModel->getAll($params);
+    $noticias = $this->noticiaModel->getNoticias();
     $this->render('noticias', [
       'data' => [
         'noticias' => $noticias
@@ -48,6 +48,16 @@ class NoticiasController extends Controller
     $this->render('formularionoticia', [
       'data' => [
         'noticia' => $noticia
+      ]
+    ], 'layout');
+  }
+  public function pagina($numeroPagina = 1)
+  {
+    $offset = obtenerOffset($numeroPagina);
+    $noticias = $this->noticiaModel->getNoticias(0, $offset);
+    $this->render('noticias', [
+      'data' => [
+        'noticias' => $noticias
       ]
     ], 'layout');
   }

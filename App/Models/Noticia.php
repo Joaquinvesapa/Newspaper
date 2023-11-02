@@ -13,11 +13,19 @@ class Noticia extends Orm
     parent::__construct('id', 'noticias', $connection);
   }
 
-  public function getAllNoticias()
+  public function getNoticias($id = 0, $offset = 0)
   {
     //Creamos el statement de la query
-    $stm = $this->db->prepare("SELECT *,noticias.id as noticia_id, categorias.denominacion as categoria FROM {$this->table} LEFT JOIN categorias ON categorias.id = {$this->table}.categoria_id WHERE {$this->table}.estado_id = 1 ORDER BY noticias.fecha_hora DESC");
+    $stm = $this->db->prepare("CALL sp_get_noticias({$id},{$offset})");
+
     $stm->execute();
     return $stm->fetchAll();
+  }
+
+  public function getTotal()
+  {
+    $stm = $this->db->prepare("SELECT * FROM v_total_noticias");
+    $stm->execute();
+    return $stm->fetch();
   }
 }
