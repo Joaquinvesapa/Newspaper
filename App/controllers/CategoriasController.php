@@ -1,16 +1,19 @@
 <?php
 require_once(__DIR__ . "/../Models/Categoria.php");
 
-class CategoriasController extends Controller{
+class CategoriasController extends Controller
+{
   private $categoriaModel;
 
-  public function __construct(PDO $conection){
+  public function __construct(PDO $conection)
+  {
     $this->categoriaModel = new Categoria($conection);
-    
+
   }
 
-  public function home(){
-    $categorias = $this->categoriaModel->getAll();
+  public function home()
+  {
+    $categorias = $this->categoriaModel->getAllCategorias();
     $this->render('categorias', [
       'data' => [
         'categorias' => $categorias
@@ -18,17 +21,18 @@ class CategoriasController extends Controller{
     ], 'layout');
 
   }
-  public function categoriaIndividual($idCategoria){
+  public function categoriaIndividual($idCategoria)
+  {
     $categoria = $this->categoriaModel->select([
       "id" => $idCategoria
     ]);
-    if($categoria){
+    if ($categoria) {
       $this->render('noticiaIndivisual', [
         'data' => [
           'noticia' => $categoria
         ]
       ], 'layout');
-    }else{
+    } else {
       $this->render('notfound', [], 'layout');
     }
   }
