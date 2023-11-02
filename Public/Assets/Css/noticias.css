@@ -140,11 +140,17 @@
   border-radius: 3px;
   text-decoration: none;
   transition: all 0.25s;
+  margin: 0.5rem;
 }
-.noticias-paginas a:not(:first-child) {
-  margin: 1rem;
+.noticias-paginas a:first-child {
+  margin-left: 0;
 }
 
 .noticias-paginas a:hover {
   scale: 1.05;
+}
+.noticias-paginas .selected {
+  background-color: white;
+  border: 1px solid var(--navbar-btn-hover);
+  color: black;
 }

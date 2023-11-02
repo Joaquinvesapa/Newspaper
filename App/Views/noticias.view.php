@@ -60,8 +60,12 @@ if ($totalNoticias > 10) {
 </section>
 <section class="noticias-paginas">
   <?php for ($i = 1; $i <= $paginas; $i++): ?>
-  <a href="<?= URL_PATH ?>/noticias/pagina/<?= $i ?>">
+  <a class="<?php echo $_GET['id'] == $i ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/<?= $i ?>">
     <?= $i ?>
   </a>
   <?php endfor ?>
+  <!-- <a class="<?php echo $_GET['id'] == 3 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/3">3</a>
+  <a class="<?php echo $_GET['id'] == 4 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/4">4</a>
+  <a class="<?php echo $_GET['id'] == 5 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/5">5</a>
+  <a class="<?php echo $_GET['id'] == 6 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/6">6</a> -->
 </section>

@@ -1,13 +1,13 @@
-import { handleNotification } from "./handleNotification.js";
+import { handleNotification } from "./handleNotification.js"
 
-const form = document.querySelector("form");
+const form = document.querySelector("form")
 
 form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const password = document.querySelector("#password").value;
-  const username = document.querySelector("#username").value;
-  checkLogin(username, password);
-});
+  e.preventDefault()
+  const password = document.querySelector("#password").value
+  const username = document.querySelector("#username").value
+  checkLogin(username, password)
+})
 
 const checkLogin = (username, password) => {
   fetch("http://localhost/newspaper/admin/login", {
@@ -23,10 +23,10 @@ const checkLogin = (username, password) => {
     .then((res) => res.json())
     .then((data) => {
       if (data.status === 200) {
-        window.location.assign("/newspaper/noticias");
+        window.location.assign("/newspaper/noticias/pagina/1")
       } else {
-        console.log(data);
-        handleNotification(data.error);
+        console.log(data)
+        handleNotification(data.error)
       }
-    });
-};
+    })
+}
