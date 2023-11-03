@@ -4,10 +4,12 @@ require_once(__DIR__ . "/../Models/Categoria.php");
 class CategoriasController extends Controller
 {
   private $categoriaModel;
+  private $noticiaModel;
 
   public function __construct(PDO $conection)
   {
     $this->categoriaModel = new Categoria($conection);
+    $this->noticiaModel = new Noticia($conection);
 
   }
 
@@ -23,13 +25,13 @@ class CategoriasController extends Controller
   }
   public function categoriaIndividual($idCategoria)
   {
-    $categoria = $this->categoriaModel->select([
-      "id" => $idCategoria
-    ]);
+    $categoria = $this->categoriaModel->getAllCategorias($idCategoria);
+    $noticias = $this->noticiaModel->getNoticiaPorCategoria($idCategoria);
     if ($categoria) {
-      $this->render('noticiaIndivisual', [
+      $this->render('categoriaIndidivual', [
         'data' => [
-          'noticia' => $categoria
+          'categoria' => $categoria,
+          'noticias' => $noticias,
         ]
       ], 'layout');
     } else {
