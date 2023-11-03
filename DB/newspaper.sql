@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-11-2023 a las 17:02:48
+-- Tiempo de generación: 03-11-2023 a las 13:05:55
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -25,13 +25,16 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_categorias` (IN `categoria_id` INT)   BEGIN
+SELECT 
+	c.id as CategoriaId,
+    c.denominacion as Categoria,
+    c.estado_id as EstadoId
+FROM categorias c
+WHERE (categoria_id = -1 OR c.id = categoria_id);
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_noticias` (IN `noticia_id` INT, IN `offset` INT)   BEGIN
-	IF(noticia_id = 0) 
-    THEN  SET @param = CONCAT('%','%');
-    ELSE
-    	SET @param = CONCAT('%', noticia_id, '%');
-    END IF;
-	
     SELECT 
         n.id as NoticiaId,
         n.titulo as Titulo,
@@ -44,7 +47,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_get_noticias` (IN `noticia_id` I
         c.denominacion as Categoria
     FROM noticias n
     INNER JOIN categorias c ON c.id = n.categoria_id
-    WHERE n.id like @param AND n.estado_id != 2
+    WHERE (noticia_id = -1 or n.id = noticia_id) AND n.estado_id != 2
 ORDER BY n.fecha_hora DESC
 LIMIT 10 OFFSET offset;
     
@@ -169,7 +172,7 @@ CREATE TABLE `noticias` (
 
 INSERT INTO `noticias` (`id`, `titulo`, `autor`, `ubicacion`, `categoria_id`, `imagen_url`, `fecha_hora`, `cuerpo`, `estado_id`) VALUES
 (1, '“Sabe quién soy”: la sorpresa que se llevó el Peque Schwartzman el día que conoció a Lionel Messi', 'Joaquin Vesco Aparicio', 'Rosario, Santa Fe', 6, 'Fotos/cloudfront-us-east-1.images.arcpublishing.png', '2023-10-14 00:00:00', '<p>El tenista contó que en la previa al Mundial de Rusia 2018 coincidió en Barcelona con el futbolista de la Selección y mantuvo un breve diálogo que guardó en su memoria.</p><p>&nbsp;</p><p><a href=\"https://www.infobae.com/deportes/tenis/2023/03/12/la-terminante-decision-que-tomo-diego-schwartzman-para-poner-fin-a-la-crisis-de-confianza-por-la-que-atraviesa/\"><i><strong>Diego Schwartzman</strong></i></a> tuvo el privilegio de conocer a <a href=\"https://www.infobae.com/deportes/2023/10/26/lionel-messi-es-candidato-a-quedarse-con-otro-premio-en-la-mls-los-dos-argentinos-que-compiten-por-convertirse-en-el-mvp/\"><i><strong>Lionel Messi</strong></i></a><strong> </strong>y charlar con el futbolista campeón del mundo en más de una oportunidad. El tenista, que actualmente ocupa el puesto 104 en el ranking ATP, compartió cómo fue su <strong>primera experiencia</strong> con el rosarino, con quien se encontró en la ciudad de Barcelona y mantuvo un breve diálogo con <i>La Pulga</i>.</p><p>&nbsp;</p><p>En una charla informal con otros tenistas que publicó la cuenta de <strong>UTS Tour</strong> (Ultimate Tennis Showdown) en su perfil de <i>Instagram</i>, el <i>Peque </i>contó su anécdota con el goleador histórico de la selección argentina, a quien vio por última vez hace unas 13 semanas en un partido de<strong> Inter Miami </strong>en el <i>DRV PNK Stadium</i> de Fort Lauderdale.</p><p>“Ya lo había conocido algunos años atrás, pero incluso cuando lo conoces y lo ves personalmente<strong> no quieres decirle nada</strong> porque hay demasiado respeto. Es decirle solamente: ‘Hola, Leo’”, comenzó <strong>Schwartzman </strong>antes de relatar su primer encuentro con el astro del fútbol.</p><p>El tenista porteño continuó con la historia: “La primera vez que lo conocí a Messi fue antes de la Copa del Mundo de Rusia en 2018. Había perdido con Rafa (Nadal) en los cuartos de final de Roland Garros y había estado un set arriba con un quiebre a favor. Después de ese partido tenía mi vuelo desde Barcelona y él se estaba preparando para el Mundial allí con la selección argentina. <strong>Así que fui allá con algunos jugadores y hablé con él”</strong>.</p>', 1),
-(2, 'Una leyenda del fútbol inglés aseguró que Messi debe ganar el Balón de Oro: “Se lo merece por el Mundial”', 'Joaquin Vesco Aparicio', 'Rosario, Santa Fe', 6, 'Fotos/cloudfront-us-east-1.images.arcpublishing (1).png', '2023-10-26 00:00:00', '<p>Michael Owen explicó que a Erling Haaland no le alcanzará con haber marcado más de 50 goles ni haber obtenido el triplete con Manchester City</p><p>&nbsp;</p><p>Este lunes se entregará el<strong> Balón de Oro</strong> en <strong>París </strong>y todo parece indicar que el que subirá al escenario será, nuevamente, <strong>Lionel Messi</strong>. El argentino, que compite con otros 29 futbolistas entre los que destacan <strong>Kylian Mbappé </strong>y <strong>Erling Haaland</strong>, podría recibir su octavo galardón, más que cualquier otro jugador en la historia. En este contexto, en medio del debate sobre si es meritorio semejante reconocimiento, el inglés <strong>Michael Owen </strong>opinó al respecto.</p><p>&nbsp;</p><p>El ex delantero que brilló en <strong>Liverpool </strong>y <strong>Real Madrid</strong>, entre otros equipos, aseguró en diálogo con el portal español Marca que no hay dudas de que <i>La Pulga</i> debe ser ele elegido: “El nivel que ha alcanzado Leo durante tantos años seguidos es increíble. Lo de los ocho Balones de Oro lo explica todo. No hace falta decir nada más. Y lo respeto más por cómo, a sus 35 años, ha conseguido llegar a lo máximo, que es ganar el Mundial estando a un gran nive<strong>l. Es increíble que Haaland, que marcó más de 50 goles, hizo el triplete... no se lo vaya a llevar, pero será porque está Messi, que lo merece por ganar el Mundial.</strong> Es una carrera increíble. Felicidades a Leo”.</p><p>&nbsp;</p><p>Owen es palabra autorizada para hablar de este premio, ya que él lo ganó en 2001, cuando se impuso en la votación final al español <strong>Raúl</strong>, el alemán <strong>Oliver Kahn </strong>y a <strong>David Beckham</strong>. Justamente, con respecto al actual presidente del <strong>Inter Miami</strong>, comentó: “Era un jugador único, un personaje muy particular. Su vida es muy diferente a la nuestra. Es una <i>celebrity</i>. Por eso, mi relación con él respeto a mi relación con otros compañeros era diferente. Ahora no trabaja en la TV, no entrena, tiene un equipo... No lo veo tanto como a otros, pero somos amigos”.</p><p>&nbsp;</p><p>Además, en relación a los jóvenes talentos no dudó en destacar a Jude Bellingham, uno de los mejores futbolistas del Real Madrid en esta temporada: “Tiene opciones (de ganar un Balón de Oro), sin duda. Es un jugador especial. Para ganarlo, debes ser el mejor de un gran equipo. Y si el Madrid gana la Liga o la Champions, puede alcanzarlo”.</p>', 1),
+(2, 'Una leyenda del fútbol inglés aseguró que Messi debe ganar el Balón de Oro: “Se lo merece por el Mundial”', 'Paco', 'Rosario, Santa Fe', 6, 'Fotos/cloudfront-us-east-1.images.arcpublishing (1).png', '2023-10-26 00:00:00', '<p>Michael Owen explicó que a Erling Haaland no le alcanzará con haber marcado más de 50 goles ni haber obtenido el triplete con Manchester City</p><p>&nbsp;</p><p>Este lunes se entregará el<strong> Balón de Oro</strong> en <strong>París </strong>y todo parece indicar que el que subirá al escenario será, nuevamente, <strong>Lionel Messi</strong>. El argentino, que compite con otros 29 futbolistas entre los que destacan <strong>Kylian Mbappé </strong>y <strong>Erling Haaland</strong>, podría recibir su octavo galardón, más que cualquier otro jugador en la historia. En este contexto, en medio del debate sobre si es meritorio semejante reconocimiento, el inglés <strong>Michael Owen </strong>opinó al respecto.</p><p>&nbsp;</p><p>El ex delantero que brilló en <strong>Liverpool </strong>y <strong>Real Madrid</strong>, entre otros equipos, aseguró en diálogo con el portal español Marca que no hay dudas de que <i>La Pulga</i> debe ser ele elegido: “El nivel que ha alcanzado Leo durante tantos años seguidos es increíble. Lo de los ocho Balones de Oro lo explica todo. No hace falta decir nada más. Y lo respeto más por cómo, a sus 35 años, ha conseguido llegar a lo máximo, que es ganar el Mundial estando a un gran nive<strong>l. Es increíble que Haaland, que marcó más de 50 goles, hizo el triplete... no se lo vaya a llevar, pero será porque está Messi, que lo merece por ganar el Mundial.</strong> Es una carrera increíble. Felicidades a Leo”.</p><p>&nbsp;</p><p>Owen es palabra autorizada para hablar de este premio, ya que él lo ganó en 2001, cuando se impuso en la votación final al español <strong>Raúl</strong>, el alemán <strong>Oliver Kahn </strong>y a <strong>David Beckham</strong>. Justamente, con respecto al actual presidente del <strong>Inter Miami</strong>, comentó: “Era un jugador único, un personaje muy particular. Su vida es muy diferente a la nuestra. Es una <i>celebrity</i>. Por eso, mi relación con él respeto a mi relación con otros compañeros era diferente. Ahora no trabaja en la TV, no entrena, tiene un equipo... No lo veo tanto como a otros, pero somos amigos”.</p><p>&nbsp;</p><p>Además, en relación a los jóvenes talentos no dudó en destacar a Jude Bellingham, uno de los mejores futbolistas del Real Madrid en esta temporada: “Tiene opciones (de ganar un Balón de Oro), sin duda. Es un jugador especial. Para ganarlo, debes ser el mejor de un gran equipo. Y si el Madrid gana la Liga o la Champions, puede alcanzarlo”.</p>', 1),
 (3, 'Título de la noticia 3', 'Autor 3', 'Rosario, Santa Fe', 3, '../Fotos/economia-min-e1518715223904.png', '2023-10-14 15:45:00', 'Contenido de la noticia 3', 2),
 (4, '“Sabe quién soy”: la sorpresa que se llevó el Peque Schwartzman el día que conoció a Lionel Messi', 'Joaquin Vesco Aparicio', 'Rosario, Santa Fe', 6, 'Fotos/cloudfront-us-east-1.images.arcpublishing.png', '2023-10-14 00:00:00', '<p>Dongui</p>', 1),
 (5, '“Sabe quién soy”: la sorpresa que se llevó el Peque Schwartzman el día que conoció a Lionel Messi', 'Joaquin Vesco Aparicio', 'Rosario, Santa Fe', 6, 'Fotos/cloudfront-us-east-1.images.arcpublishing.png', '2023-10-14 00:00:00', '<p>Dongui</p>', 1),

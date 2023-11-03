@@ -3,7 +3,7 @@ $db = new Database();
 $conection = $db->getConnection();
 
 $categoriasModel = new Categoria($conection);
-$categorias = $categoriasModel->getAll();
+$categorias = $categoriasModel->getAllCategorias();
 
 $noticiasModel = new Noticia($conection);
 
@@ -11,7 +11,7 @@ $isEditar = false;
 //Si llega informacion del controller, es que se quiere editar una noticia
 if (isset($parameters['data'])) {
   $isEditar = true;
-  $noticia = $parameters['data']['noticia'];
+  $noticia = $parameters['data']['noticia'][0];
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -29,18 +29,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'cuerpo' => $_POST['cuerpo'],
     'imagen_url' => $imagenUrl
   );
-
   //Actualizamos o insertamos dependiendo de si estamos en editar(isset($noticia)) o en crear
   if (isset($noticia)) {
-
-    $noticiasModel->updateById($noticia['id'], $data);
-
+    if ($_FILES['imagen']['name'] == '') {
+      $data['imagen_url'] = $noticia['ImagenUrl'];
+    }
+    $noticiasModel->updateById($noticia['NoticiaId'], $data);
   } else {
-
     $noticiasModel->insert($data);
 
   }
-  header("Location: /newspaper/noticias");
+  header("Location: /newspaper/noticias/pagina/1");
 }
 ?>
 
@@ -58,27 +57,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <label for="titulo">Titulo</label>
     <input placeholder="Titulo" type="text" name="titulo" id="titulo" value="<?php if (isset($noticia)) {
-      echo $noticia["titulo"];
+      echo $noticia["Titulo"];
     } else {
       echo "";
     } ?>">
 
     <label for="autor">Autor</label>
     <input placeholder="Autor" type="text" name="autor" id="autor" value="<?php if (isset($noticia)) {
-      echo $noticia["autor"];
+      echo $noticia["Autor"];
     } else {
       echo "";
     } ?>">
     <label for="ubicacion">Ubicacion</label>
     <input placeholder="ubicacion" type="text" name="ubicacion" id="ubicacion" value="<?php if (isset($noticia)) {
-      echo $noticia["ubicacion"];
+      echo $noticia["Ubicacion"];
     } else {
       echo "";
     } ?>">
 
     <label for="fecha">Fecha</label>
     <input placeholder="Fecha" type="date" name="fecha" id="fecha" value="<?php if (isset($noticia)) {
-      echo substr($noticia["fecha_hora"], 0, 10);
+      echo substr($noticia["FechaHora"], 0, 10);
     } else {
       echo "";
     } ?>">
@@ -88,10 +87,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <option value="" disabled selected hidden>Categoria</option>
       <?php if (isset($categorias)): ?>
         <?php foreach ($categorias as $key => $categoria): ?>
-          <option value=" <?= $categoria["id"] ?>" <?php if (isset($noticia) && $noticia["categoria_id"] == $categoria["id"]) {
+          <option value=" <?= $categoria["CategoriaId"] ?>" <?php if (isset($noticia) && $noticia["CategoriaId"] == $categoria["CategoriaId"]) {
               echo "selected";
             } ?>>
-            <?= $categoria["denominacion"] ?>
+            <?= $categoria["Categoria"] ?>
           </option>
         <?php endforeach; ?>
       <?php endif; ?>
@@ -99,18 +98,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <label for="cuerpo">Cuerpo</label>
     <textarea name="cuerpo" id="editor">
-    <?php echo isset($noticia) ? $noticia["cuerpo"] : null ?>
+    <?php echo isset($noticia) ? $noticia["Cuerpo"] : null ?>
     </textarea>
 
   </section>
 
 
   <section class="imagen-section">
-    <input type="file" name="imagen" id="inpImagen" class="imagen-input" value=''>
+    <input type="file" name="imagen" id="inpImagen" class="imagen-input"
+      value="<?= "../../" . $noticia["ImagenUrl"] ?>">
     <label for="inpImagen" class="label-img">Agregar Imagen</label>
     <div class="imagen">
       <?php if (isset($noticia)): ?>
-        <img src="<?= "../../" . $noticia["imagen_url"] ?>" alt="">
+        <img src="<?= "../../" . $noticia["ImagenUrl"] ?>" alt="">
       <?php endif ?>
     </div>
   </section>

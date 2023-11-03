@@ -10,9 +10,9 @@ class Categoria extends Orm
 
     parent::__construct('id', 'categorias', $connection);
   }
-  public function getAllCategorias()
+  public function getAllCategorias($id = -1)
   {
-    $stm = $this->db->prepare("SELECT * FROM v_get_categorias");
+    $stm = $this->db->prepare("CALL sp_get_categorias({$id})");
 
     $stm->execute();
     return $stm->fetchAll();

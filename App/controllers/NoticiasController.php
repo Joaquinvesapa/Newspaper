@@ -44,7 +44,7 @@ class NoticiasController extends Controller
   }
   public function editar($id)
   {
-    $noticia = $this->noticiaModel->getById($id);
+    $noticia = $this->noticiaModel->getNoticias($id);
     $this->render('formularionoticia', [
       'data' => [
         'noticia' => $noticia
@@ -54,7 +54,8 @@ class NoticiasController extends Controller
   public function pagina($numeroPagina = 1)
   {
     $offset = obtenerOffset($numeroPagina);
-    $noticias = $this->noticiaModel->getNoticias(0, $offset);
+    $noticias = $this->noticiaModel->getNoticias(-1, $offset);
+
     $this->render('noticias', [
       'data' => [
         'noticias' => $noticias

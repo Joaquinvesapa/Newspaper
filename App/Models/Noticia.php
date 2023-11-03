@@ -13,7 +13,7 @@ class Noticia extends Orm
     parent::__construct('id', 'noticias', $connection);
   }
 
-  public function getNoticias($id = 0, $offset = 0)
+  public function getNoticias($id = -1, $offset = 0)
   {
     //Creamos el statement de la query
     $stm = $this->db->prepare("CALL sp_get_noticias({$id},{$offset})");

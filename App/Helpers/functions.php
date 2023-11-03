@@ -10,7 +10,6 @@ function moveImage($image)
   $nombre = $image['name'];
   $ruta_provisional = $image['tmp_name'];
   $carpeta = "Fotos/";
-
   $src = $carpeta . $nombre;
 
   if (file_exists($src)) {
