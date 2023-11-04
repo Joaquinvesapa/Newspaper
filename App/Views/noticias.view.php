@@ -42,7 +42,7 @@ if ($totalNoticias > 10) {
         </div>
       </a>
       <section class="article-noticia-categoria">
-        <a href="<?= URL_PATH ?>/categorias/<?= $noticia["CategoriaId"] ?>">
+        <a href="<?= URL_PATH ?>/categorias/<?= $noticia["CategoriaId"] ?>/pagina/1">
           <?= $noticia["Categoria"] ?>
         </a>
         <?php if (isLogged()): ?>

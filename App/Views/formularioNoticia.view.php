@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     'cuerpo' => $_POST['cuerpo'],
     'imagen_url' => $imagenUrl
   );
-  //Actualizamos o insertamos dependiendo de si estamos en editar(isset($noticia)) o en crear
   if (isset($noticia)) {
     if ($_FILES['imagen']['name'] == '') {
       $data['imagen_url'] = $noticia['ImagenUrl'];

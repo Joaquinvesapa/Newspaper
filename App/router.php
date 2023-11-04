@@ -7,6 +7,8 @@ class Router
   private $method;
   private $categoria;
   private $id;
+  private $pag;
+  private $numPagina;
 
   function __construct()
   {
@@ -20,6 +22,9 @@ class Router
     $this->id = $_GET['id'] ?? null;
     $this->categoria = $_GET['cat'] ?? null;
     $this->method = $_GET['met'] ?? 'home';
+    $this->pag = $_GET['pag'] ?? 'pagina';
+    $this->numPagina = $_GET['numPagina'] ?? 1;
+
 
     //Generamos la ruta del controller de manera dinamica en base a la URL
     $this->controller = $controller . 'Controller';
@@ -50,8 +55,8 @@ class Router
   {
 
     $database = new Database();
+    
     $conection = $database->getConnection();
-
     $methodIndividual = str_replace("sController", '', $this->controller) . "Individual";
 
     $controller = new $this->controller($conection);
@@ -66,7 +71,7 @@ class Router
 
       } else {
 
-        $controller->$methodIndividual($this->id);
+        $controller->$methodIndividual($this->id, $this->numPagina);
 
       }
     } else {

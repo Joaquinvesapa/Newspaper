@@ -23,10 +23,12 @@ class CategoriasController extends Controller
     ], 'layout');
 
   }
-  public function categoriaIndividual($idCategoria)
+  public function categoriaIndividual($idCategoria, $numPagina = 1)
   {
+    $offset = obtenerOffset($numPagina);
+
     $categoria = $this->categoriaModel->getAllCategorias($idCategoria);
-    $noticias = $this->noticiaModel->getNoticiaPorCategoria($idCategoria);
+    $noticias = $this->noticiaModel->getNoticiaPorCategoria($idCategoria, $offset);
     if ($categoria) {
       $this->render('categoriaIndidivual', [
         'data' => [

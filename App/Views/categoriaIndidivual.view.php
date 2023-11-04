@@ -7,7 +7,7 @@ $noticias = $parameters["data"]["noticias"];
 
 $noticiasModel = new Noticia($conection);
 
-$totalNoticias = $noticiasModel->getTotal()["Total"];
+$totalNoticias = $noticiasModel->getTotalNoticiasPorCategoria($categoria["CategoriaId"])["Total"];
 $paginas = 1;
 if ($totalNoticias > 10) {
   $paginas = floor(($totalNoticias / 10) + 1);
@@ -16,11 +16,14 @@ if ($totalNoticias > 10) {
 <link rel="stylesheet" href="/newspaper/public/assets/css/noticias.css">
 
 <section class="main-top">
-  <h3>
+  <h2>
     <?= $categoria["Categoria"] ?>
-  </h3>
+  </h2>
 </section>
 <section class="noticias-container">
+  <?php if (count($noticias) == 0): ?>
+    <h3>No hay noticias para esta categoria</h3>
+  <?php endif; ?>
   <?php foreach ($noticias as $key => $noticia): ?>
     <article class="article-noticia edit">
       <a class="article-noticia-link" href="<?= URL_PATH ?>/noticias/<?= $noticia['NoticiaId'] ?>">
@@ -43,9 +46,7 @@ if ($totalNoticias > 10) {
         </div>
       </a>
       <section class="article-noticia-categoria">
-        <a href="<?= URL_PATH ?>/categorias/<?= $noticia["CategoriaId"] ?>">
-          <?= $noticia["Categoria"] ?>
-        </a>
+        <br>
         <?php if (isLogged()): ?>
           <a class="article-noticia-edit-link" href="<?= URL_PATH ?>/noticias/<?= $noticia['NoticiaId'] ?>/editar">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24"
@@ -62,14 +63,17 @@ if ($totalNoticias > 10) {
     </article>
   <?php endforeach ?>
 </section>
-<section class="noticias-paginas">
-  <?php for ($i = 1; $i <= $paginas; $i++): ?>
-    <a class="<?php echo $_GET['id'] == $i ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/<?= $i ?>">
-      <?= $i ?>
-    </a>
-  <?php endfor ?>
-  <!-- <a class="<?php echo $_GET['id'] == 3 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/3">3</a>
+<?php if (count($noticias)): ?>
+  <section class="noticias-paginas">
+    <?php for ($i = 1; $i <= $paginas; $i++): ?>
+      <a class="<?php echo $_GET['numPagina'] == $i ? 'selected' : '' ?>"
+        href="<?= URL_PATH ?>/categorias/<?= $categoria['CategoriaId'] ?>/pagina/<?= $i ?>">
+        <?= $i ?>
+      </a>
+    <?php endfor ?>
+    <!-- <a class="<?php echo $_GET['id'] == 3 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/3">3</a>
   <a class="<?php echo $_GET['id'] == 4 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/4">4</a>
   <a class="<?php echo $_GET['id'] == 5 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/5">5</a>
   <a class="<?php echo $_GET['id'] == 6 ? 'selected' : '' ?>" href="<?= URL_PATH ?>/noticias/pagina/6">6</a> -->
-</section>
+  </section>
+<?php endif; ?>

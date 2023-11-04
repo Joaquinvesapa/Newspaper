@@ -29,11 +29,17 @@ class Noticia extends Orm
     return $stm->fetch();
   }
 
-  public function getNoticiaPorCategoria($categoriaId)
+  public function getNoticiaPorCategoria($categoriaId, $offset = 0)
   {
-    $stm = $this->db->prepare("CALL sp_get_noticias_por_categoria({$categoriaId})");
-
+    $stm = $this->db->prepare("CALL sp_get_noticias_por_categoria({$categoriaId}, {$offset})");
     $stm->execute();
     return $stm->fetchAll();
+  }
+
+  public function getTotalNoticiasPorCategoria($categoriaId)
+  {
+    $stm = $this->db->prepare("CALL sp_get_total_noticias_por_categoria({$categoriaId})");
+    $stm->execute();
+    return $stm->fetch();
   }
 }

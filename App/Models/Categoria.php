@@ -15,6 +15,7 @@ class Categoria extends Orm
     $stm = $this->db->prepare("CALL sp_get_categorias({$id})");
 
     $stm->execute();
+
     return $stm->fetchAll();
   }
 }
