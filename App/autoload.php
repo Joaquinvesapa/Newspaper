@@ -11,3 +11,9 @@ require_once(__DIR__ . '/Helpers/functions.php');
 $modelos = glob(__DIR__ . '/models/*.php');
 foreach ($modelos as $m)
   require_once $m;
+
+$modelos = glob(__DIR__ . '/PHPMailer/*.php'); foreach ($modelos as $m)
+  require_once $m;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
