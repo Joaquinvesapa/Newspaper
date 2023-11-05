@@ -27,14 +27,14 @@ function enviarMail()
     $mail->isSMTP(); //Send using SMTP
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
-    $mail->Username = 'joaquinvesapa@gmail.com'; //SMTP username
-    $mail->Password = 'mzoa hlli qxqu fdnr'; //SMTP password
+    $mail->Username = $_ENV['EMAIL_CONTACTO']; //SMTP username
+    $mail->Password = $_ENV['APP_MAIL_KEY']; //SMTP password
     $mail->SMTPSecure = 'ssl';
     $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
     $mail->smtpConnect($options);
-    $mail->addAddress('joaquinvesapa@gmail.com', 'JoaquinVesapa');
+    $mail->addAddress($_ENV['EMAIL_CONTACTO'], 'JoaquinVesapa');
     //Content
     $mail->isHTML(true); //Set email format to HTML
     $mail->Subject = 'Here is the subject';
