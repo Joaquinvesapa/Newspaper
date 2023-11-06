@@ -1,0 +1,77 @@
+h2 {
+  margin-top: 1rem;
+  margin-inline: 100px;
+}
+
+.container-formulario-contacto {
+  min-height: 500px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+  padding-inline: 100px;
+}
+
+.container-formulario-contacto form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container-formulario-contacto form {
+  height: 100%;
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgba(126, 126, 126, 0.432);
+  border-radius: 5px;
+  padding: 25px 30px;
+}
+.container-formulario-contacto button {
+  cursor: pointer;
+  color: white;
+  margin-top: 10px;
+  background-color: var(--primary);
+  border: 1px solid var(--primary-darker);
+  font-weight: bold;
+  height: 40px;
+  border-radius: 4px;
+  font-size: 18px;
+  outline-color: #0a7c9e;
+  transition: all 0.25s;
+}
+.container-formulario-contacto button:hover {
+  background: var(--primary-light);
+}
+
+.container-formulario-contacto label {
+  margin-bottom: 5px;
+}
+.container-formulario-contacto input,
+textarea {
+  margin-bottom: 20px;
+  height: 35px;
+  padding-inline: 6px;
+  border: 1px solid rgba(126, 126, 126, 0.432);
+  border-radius: 4px;
+  outline-color: #0cb2e49a;
+  font: inherit;
+  font-size: 14px;
+}
+.container-imagen {
+  width: 500px;
+}
+
+.container-imagen img {
+  aspect-ratio: 16/9;
+  object-fit: cover;
+}
+@media (max-width: 1400px) {
+  h2 {
+    margin-inline: 0;
+  }
+  .container-imagen {
+    display: none;
+  }
+  .container-formulario-contacto {
+    padding-inline: 0;
+    grid-template-columns: 1fr;
+  }
+}

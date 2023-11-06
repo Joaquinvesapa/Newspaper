@@ -3,7 +3,6 @@
 //These must be at the top of your script, not inside a function
 
 //Load Composer's autoloader
-var_dump("../ __DIR__");
 // require_once('../../PHPMailer/PHPMailer.php');
 // require_once('/PHPMailer/SMTP.php');
 // require_once('/PHPMailer/Exception.php');
@@ -50,9 +49,38 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   enviarMail();
 }
 ?>
+<link rel="stylesheet" href="/newspaper/public/assets/css/contacto.css">
 
 <h2>Desde Contacto</h2>
-<form action="">
-  <button>enviarMail</button>
-</form>
+<section class="container-formulario-contacto">
+  <form action="">
+    <label for="nombre">
+      Nombre
+    </label>
+    <input type="text" id="nombre" name="nombre" placeholder="Nombre">
+
+    <label for="email">
+      Email
+    </label>
+    <input type="text" id="email" name="email" placeholder="Email">
+
+    <label for="asunto">
+      Asunto
+    </label>
+    <input type="text" id="asunto" name="asunto" placeholder="Asunto">
+
+    <label for="cuerpo">Cuerpo
+    </label>
+    <textarea name="cuerpo" id="editor">
+      <?php echo isset($noticia) ? $noticia["Cuerpo"] : null ?>
+    </textarea>
+
+    <button>Enviar Mensaje</button>
+  </form>
+  <article class="container-imagen">
+    <img src="/newspaper/public/images/Avion de papel.png" alt="">
+  </article>
+</section>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
 <script src="<?= URL_PATH ?>/public/assets/javascript/contacto.js"></script>
