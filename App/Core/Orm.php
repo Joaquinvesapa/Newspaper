@@ -128,8 +128,9 @@ class Orm
       $stm->bindvalue(":{$key}", $value);
     }
     $stm->bindvalue(":estado_id", 1); //por defecto los registros se crean con estado "Activo" (1)
-
     $stm->execute();
+
+    return $stm->fetch();
   }
 
   public function select($data)

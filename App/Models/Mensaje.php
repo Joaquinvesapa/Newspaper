@@ -11,12 +11,9 @@ class Mensaje extends Orm
 
   function getMensajes($id = -1, $estado_id = 6, $offset = 0)
   {
+
     $stm = $this->db->prepare("CALL sp_get_mensajes({$id},{$estado_id},{$offset})");
     $stm->execute();
-    // echo "<pre>";
-    // var_dump($stm->fetchAll());
-    // echo "</pre>";
-    // die();
     return $stm->fetchAll();
   }
 
@@ -54,5 +51,13 @@ class Mensaje extends Orm
     $stm = $this->db->prepare("SELECT * FROM v_get_total_mensajes");
     $stm->execute();
     return $stm->fetch();
+  }
+
+  public function mensajeEnviado($id)
+  {
+    $stm = $this->db->prepare("UPDATE mensajes SET mensajes.estado_id = 5 WHERE mensajes.id = :id");
+    $stm->bindParam(":id", $id);
+    $stm->execute();
+
   }
 }

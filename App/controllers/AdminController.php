@@ -18,6 +18,14 @@ class AdminController extends Controller
       $this->renderWithoutLayout('admin', []);
     }
   }
+  public function registro()
+  {
+    if (isset($_SESSION["id"])) {
+      header("Location: /newspaper");
+    } else {
+      $this->renderWithoutLayout('register', []);
+    }
+  }
 
   public function login()
   {
@@ -52,5 +60,35 @@ class AdminController extends Controller
 
     header('Location: ' . URL_PATH);
     // // header('Location: ')
+  }
+
+  public function crear()
+  {
+    $loginData = file_get_contents('php://input');
+    $body = json_decode($loginData, true);
+    $nuevoNombreUsuario = $body["nombreUsuario"];
+    $nuevaContraseña = $body["contrasenia"];
+    $admincontraseña = $body["admincontrasenia"];
+
+    $this->usuarioModel = new Usuario($this->db);
+    try {
+      $checkLogin = $this->usuarioModel->checkAdmin($admincontraseña);
+      if ($checkLogin) {
+        $nuevoUsuario = [
+          "apenom" => $nuevoNombreUsuario,
+          "nombre_usuario" => $nuevoNombreUsuario,
+          "contrasenia" => $nuevaContraseña,
+        ];
+        $this->usuarioModel->insert($nuevoUsuario);
+        echo json_encode(new Response($checkLogin));
+
+      } else {
+        throw new Exception('No se pudo registrar el usuario');
+      }
+
+    } catch (Exception $e) {
+      $error = new Err($e->getMessage(), "Error");
+      echo json_encode($error);
+    }
   }
 }

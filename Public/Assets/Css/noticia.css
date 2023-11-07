@@ -12,6 +12,10 @@
 .section-imagen {
   width: 100%;
 }
+.section-imagen img {
+  aspect-ratio: 16/9;
+  width: 100%;
+}
 .cuerpo {
   display: flex;
   flex-direction: column;

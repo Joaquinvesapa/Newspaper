@@ -14,13 +14,15 @@
   <main>
     <section>
       <h1>Login</h1>
-      <form style="display:flex; flex-direction:column;" action="" method="POST">
+      <form action="" method="POST" style="display:flex; flex-direction:column;">
         <label for="username">Username</label>
-        <input placeholder="Nombre de Usuario" type="text" name="username" id="username">
+        <input placeholder="Nombre de Usuario" type="text" name="username" id="username" required>
         <label for="password">Contraseña</label>
-        <input placeholder="Contraseña" type="text" name="password" id="password">
+        <input placeholder="Contraseña" type="password" name="password" id="password" autocomplete="on" required>
         <button>Ingresar</button>
       </form>
+      <!-- <a href="<?= URL_PATH ?>/admin/registro" style="font-size: 14px; color: var(--primary)">Registrar nuevo
+        usuario</a> -->
     </section>
   </main>
 </body>

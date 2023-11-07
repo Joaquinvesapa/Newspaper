@@ -60,30 +60,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo $noticia["Titulo"];
     } else {
       echo "";
-    } ?>">
+    } ?>" required>
 
     <label for="autor">Autor</label>
     <input placeholder="Autor" type="text" name="autor" id="autor" value="<?php if (isset($noticia)) {
       echo $noticia["Autor"];
     } else {
       echo "";
-    } ?>">
+    } ?>" required>
     <label for="ubicacion">Ubicacion</label>
     <input placeholder="ubicacion" type="text" name="ubicacion" id="ubicacion" value="<?php if (isset($noticia)) {
       echo $noticia["Ubicacion"];
     } else {
       echo "";
-    } ?>">
+    } ?>" required>
 
     <label for="fecha">Fecha</label>
     <input placeholder="Fecha" type="date" name="fecha" id="fecha" value="<?php if (isset($noticia)) {
       echo substr($noticia["FechaHora"], 0, 10);
     } else {
       echo "";
-    } ?>">
+    } ?>" required>
 
     <label for="categoria">Categoria</label>
-    <select placeholder="Categoria" type="text" name="categoria" id="categoria">
+    <select placeholder="Categoria" type="text" name="categoria" id="categoria" required>
       <option value="" disabled selected hidden>Categoria</option>
       <?php if (isset($categorias)): ?>
       <?php foreach ($categorias as $key => $categoria): ?>
@@ -105,14 +105,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
   <section class="imagen-section">
-    <input type="file" name="imagen" id="inpImagen" class="imagen-input"
-      value="<?= "../../" . $noticia["ImagenUrl"] ?>">
     <label for="inpImagen" class="label-img">Agregar Imagen</label>
     <div class="imagen">
       <?php if (isset($noticia)): ?>
       <img src="<?= "../../" . $noticia["ImagenUrl"] ?>" alt="">
       <?php endif ?>
     </div>
+    <input type="file" name="imagen" id="inpImagen" class="imagen-input"
+      value="<?= "../../" . $noticia["ImagenUrl"] ?>">
   </section>
 
   <button class="btnEnviar">

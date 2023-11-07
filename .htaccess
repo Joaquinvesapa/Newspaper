@@ -10,10 +10,13 @@ RewriteEngine On
 # RewriteRule ^([a-z]+)/([a-z]+)$ index.php/$1/$2 [QSA]
 
 RewriteRule ^([a-z]+)$ index.php?con=$1 
+RewriteRule ^([a-z]+)/(registro)/(crear)$ index.php?con=$1&met=$3 
 RewriteRule ^([a-z]+)/(crear)$ index.php?con=$1&met=$2 
 RewriteRule ^([a-z]+)/(borrar)/(\d+)$ index.php?con=$1&met=$2&id=$3
 RewriteRule ^([a-z]+)/(pagina)/(\d+)$ index.php?con=$1&met=$2&id=$3 
 RewriteRule ^([a-z]+)/(responder)/(\d+)$ index.php?con=$1&met=$2&id=$3 
+RewriteRule ^([a-z]+)/(enviados)/(pagina)/(\d+)$ index.php?con=$1&met=$2&pag=$3&id=$4
+RewriteRule ^([a-z]+)/(enviados)/(\d+)$ index.php?con=$1&met=$2&id=$3
 RewriteRule ^([a-z]+)/(\d+)$ index.php?con=$1&id=$2 
 RewriteRule ^([a-z]+)/(\d+)/(pagina)/(\d+)$ index.php?con=$1&id=$2&pag=$3&numPagina=$4 
 RewriteRule ^([a-z]+)/(\d+)/([a-z]+)$ index.php?con=$1&id=$2&met=$3 

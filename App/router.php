@@ -65,7 +65,7 @@ class Router
 
     if ($this->id) {
 
-      if ($method == "editar" || $method == "pagina" || $method == "borrar" || $method == "responder") {
+      if ($method == "editar" || $method == "pagina" || $method == "borrar" || $method == "responder" || $method == "enviados") {
 
         $controller->$method($this->id);
 

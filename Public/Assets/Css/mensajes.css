@@ -1,6 +1,35 @@
 h2 {
   margin-block: 1rem;
 }
+.buttons {
+  display: flex;
+  justify-content: start;
+}
+.buttons a {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  border: 1px solid var(--grey);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.buttons a:hover {
+  background-color: white;
+  color: black;
+}
+.buttons a:first-child {
+  margin-right: 1rem;
+}
+.buttons .selected {
+  background-color: white;
+  color: black;
+}
+.buttons .selected:hover {
+  background-color: black;
+  color: white;
+}
 
 .lista-mensajes {
   width: 100%;
@@ -23,6 +52,12 @@ h2 {
 .mensaje a:hover {
   text-decoration: underline;
 }
+.enviado a {
+  text-decoration: line-through;
+}
+.enviado a:hover {
+  text-decoration: none;
+}
 
 .nombre {
   font-weight: bold;
@@ -43,44 +78,6 @@ h2 {
   border: none;
   color: var(--grey);
   height: 30px;
-}
-dialog {
-  margin: auto;
-  border: 1px solid var(--grey);
-  padding: 20px;
-  border-radius: 5px;
-}
-dialog section {
-  height: 75px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-dialog button {
-  cursor: pointer;
-  color: white;
-  padding: 0.3rem 1rem;
-  border-radius: 4px;
-  transition: all 0.25s;
-}
-#confirm {
-  background-color: var(--primary);
-  border: 1px solid var(--primary-darker);
-}
-#confirm:hover {
-  background-color: var(--primary-light);
-}
-#cancel {
-  background-color: black;
-  border: 1px solid var(--grey);
-}
-#cancel:hover {
-  background-color: var(--navbar-btn-hover);
-}
-
-dialog::backdrop {
-  background-color: rgb(0, 0, 0, 0.4);
 }
 
 .mensajes-paginas {

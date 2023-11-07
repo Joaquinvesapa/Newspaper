@@ -1,0 +1,21 @@
+.categorias-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 2rem 1rem;
+}
+
+.categorias-container a {
+  width: 100%;
+  background-color: black;
+  border: 1px solid var(--primary-darker);
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.25s;
+}
+
+.categorias-container a:hover {
+  background-color: var(--primary);
+}

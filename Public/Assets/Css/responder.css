@@ -1,0 +1,66 @@
+.container-responder {
+  padding-inline: 200px;
+  display: flex;
+  flex-direction: column;
+  margin-block: 1rem;
+}
+
+.container-responder form label {
+  margin-bottom: 5px;
+}
+
+.mensaje-info {
+  margin-block: 0.5rem;
+}
+.mensaje-info a {
+  text-decoration: none;
+  color: black;
+  transition: all 0.25s;
+}
+.mensaje-info a:hover {
+  text-decoration: underline;
+}
+
+.container-responder form {
+  padding: 1rem;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+input {
+  margin-bottom: 20px;
+  height: 35px;
+  padding-inline: 6px;
+  border: 1px solid rgba(126, 126, 126, 0.432);
+  border-radius: 4px;
+  outline-color: var(--primary-darker);
+  font: inherit;
+  font-size: 14px;
+}
+#email {
+  outline-style: none;
+}
+
+.container-responder form button {
+  margin-block: 0.5rem;
+  cursor: pointer;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 1px solid var(--primary-darker);
+  width: fit-content;
+  border-radius: 5px;
+  color: white;
+  background-color: var(--primary);
+  transition: all 0.25s;
+}
+
+.container-responder form button:hover {
+  background-color: var(--primary-light);
+}
+
+@media (max-width: 1400px) {
+  .container-responder {
+    padding-inline: 0;
+  }
+}

@@ -181,3 +181,42 @@ footer {
   align-items: center;
   bottom: 0;
 }
+
+dialog {
+  margin: auto;
+  border: 1px solid var(--grey);
+  padding: 20px;
+  border-radius: 5px;
+}
+dialog section {
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+dialog button {
+  cursor: pointer;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  transition: all 0.25s;
+}
+#confirm {
+  background-color: var(--primary);
+  border: 1px solid var(--primary-darker);
+}
+#confirm:hover {
+  background-color: var(--primary-light);
+}
+#cancel {
+  background-color: black;
+  border: 1px solid var(--grey);
+}
+#cancel:hover {
+  background-color: var(--navbar-btn-hover);
+}
+
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.4);
+}

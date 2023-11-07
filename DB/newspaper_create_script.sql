@@ -44,6 +44,14 @@ CREATE TABLE noticias(
   FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 )
 
+CREATE TABLE respuestas(
+	id int PRIMARY KEY AUTO_INCREMENT,
+    respuesta longtext,
+    estado_id int default 1,
+    mensaje_respondido_id int,
+    FOREIGN KEY mensaje_respondido_id REFERENCES mensajes(id)
+)
+
 ----------------------------------------------------------------------------------------?
 
 CATEGORIAS:
@@ -56,11 +64,11 @@ CATEGORIAS:
   => Entretenimiento
 
 INSERT INTO categorias(denominacion)
-VALUES ('Educacion'),
-      ('Economia'),
+VALUES ('Educación'),
+      ('Economía'),
       ('Internacional'),
       ('Salud'),
-      ('Politica'),
+      ('Política'),
       ('Deporte'),
       ('Entretenimiento')
 

@@ -1,9 +1,32 @@
+:root {
+  --main-light: #d9f0fa;
+  --main-btn-bg: #d3f2ff;
+  --main-btn-border: #80cbea;
+  --main-btn-hover: rgb(143, 221, 255);
+  --main-btn-color: #106489;
+  --border: #7e7e7e6e;
+
+  --navbar-btn: rgba(49, 49, 49, 0.701);
+  --navbar-btn-hover: rgb(59, 59, 59);
+  --black: #060606;
+  --black-medium: #161616;
+  --primary: #6925ae;
+  --primary-darker: #410f74;
+  --primary-light: #a76be3;
+  --primary-extra-light: #debffd;
+  --grey: #525252;
+}
+@font-face {
+  font-family: appleFont;
+  src: url(../../Fonts/SF-Pro.ttf);
+}
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: "Inter", sans-serif;
+  /* font-family: "Inter", sans-serif; */
+  font-family: appleFont;
 }
 
 main {
@@ -24,24 +47,25 @@ form {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
-  border: 1px solid rgba(126, 126, 126, 0.432);
+  border: 1px solid var(--primary-darker);
   border-radius: 5px;
   padding: 25px 30px;
 }
 button {
   cursor: pointer;
   margin-top: 10px;
-  background: #0cb1e4;
-  border: 1px solid #0987ad;
+  background: var(--primary);
+  border: 1px solid var(--grey);
   font-weight: bold;
   height: 40px;
+  color: white;
   border-radius: 4px;
   font-size: 18px;
-  outline-color: #0a7c9e;
+  outline-color: var(--primary-darker);
   transition: all 0.25s;
 }
 button:hover {
-  background: #93e6ff;
+  background: var(--primary-light);
 }
 
 label {
@@ -51,9 +75,10 @@ input {
   margin-bottom: 20px;
   height: 35px;
   padding-inline: 6px;
-  border: 1px solid rgba(126, 126, 126, 0.432);
+  border: 1px solid var(--grey);
   border-radius: 4px;
-  outline-color: #0cb2e49a;
+  outline-color: var(--primary-darker);
+
   font: inherit;
   font-size: 14px;
 }

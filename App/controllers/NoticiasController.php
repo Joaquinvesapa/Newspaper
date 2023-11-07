@@ -16,34 +16,27 @@ class NoticiasController extends Controller
 
   public function home()
   {
-    // require_once(__DIR__ . "/../Views/home.view.php");
-    // $this->render('home', [], 'layout');
-    $params = array(
-      "columns" => null,
-      "joins" => null,
-      "wheres" => null,
-      "orderBy" => null,
-    );
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    } else {
 
-    $params["columns"] = "noticias.id as noticia_id, noticias.titulo as titulo, noticias.autor as autor, noticias.fecha_hora as fecha_hora, noticias.ubicacion as ubicacion,noticias.imagen_url as imagen_url, noticias.cuerpo as cuerpo, noticias.categoria_id as categoria_id,noticias.estado_id as estado_id, categorias.denominacion as categoria";
-
-    $params["joins"] = ["INNER JOIN categorias ON categorias.id = noticias.categoria_id"];
-
-    $noticias = $this->noticiaModel->getNoticias();
-    $this->render('noticias', [
-      'data' => [
-        'noticias' => $noticias
-      ]
-    ], 'layout');
+      header('Location: /newspaper/noticias/pagina/1');
+    }
   }
 
   public function crear()
   {
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
     $this->render('formularionoticia', [], 'layout');
 
   }
   public function editar($id)
   {
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
     $noticia = $this->noticiaModel->getNoticias($id);
     $this->render('formularionoticia', [
       'data' => [
@@ -51,9 +44,19 @@ class NoticiasController extends Controller
       ]
     ], 'layout');
   }
+
+  public function borrar($id)
+  {
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
+    $this->noticiaModel->deleteById($id);
+    header('Location: /newspaper/noticias/home');
+
+  }
   public function pagina($numeroPagina = 1)
   {
-    $offset = obtenerOffset($numeroPagina);
+    $offset = obtenerOffsetPagina($numeroPagina);
     $noticias = $this->noticiaModel->getNoticias(-1, $offset);
 
     $this->render('noticias', [

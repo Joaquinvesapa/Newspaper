@@ -25,7 +25,7 @@ class CategoriasController extends Controller
   }
   public function categoriaIndividual($idCategoria, $numPagina = 1)
   {
-    $offset = obtenerOffset($numPagina);
+    $offset = obtenerOffsetPagina($numPagina);
 
     $categoria = $this->categoriaModel->getAllCategorias($idCategoria);
     $noticias = $this->noticiaModel->getNoticiaPorCategoria($idCategoria, $offset);

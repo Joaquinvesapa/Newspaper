@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-window.navigator.serviceWorker.register("../../service-worker.js")
+// window.navigator.serviceWorker.register("../../service-]worker.js")
 // const iniciarSesion = async () => {
 //   await fetch("http://localhost/newspaper/admin/login")
 //     .then((res) => res.json())

@@ -25,7 +25,13 @@ function formatearFecha($fecha)
   return date_format(date_create($fecha), "d/m/Y");
 }
 
-function obtenerOffset($numeroPagina)
+function obtenerOffsetPagina($numeroPagina)
 {
   return ($numeroPagina * 10) - 10;
+}
+
+function obtenerOffsetMensajes($numeroPagina)
+{
+  return ($numeroPagina * 20) - 20;
+
 }

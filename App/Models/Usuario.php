@@ -20,4 +20,13 @@ class Usuario extends Orm
       "contrasenia" => $this->contraseña
     ]);
   }
+
+  public function checkAdmin($adminContrasenia)
+  {
+    // return $this->nombreUsuario;
+    return $this->select([
+      "nombre_usuario" => 'admin',
+      "contrasenia" => $adminContrasenia
+    ]);
+  }
 }

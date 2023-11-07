@@ -6,21 +6,28 @@ class MensajesController extends Controller
 {
 
   private $mensajeModel;
+  private $respuestaModel;
 
   public function __construct(PDO $conection)
   {
 
     $this->mensajeModel = new Mensaje($conection);
+    $this->respuestaModel = new Respuesta($conection);
   }
 
   public function home()
   {
-    header('Location: /newspaper/mensajes/pagina/1');
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    } else {
+
+      header('Location: /newspaper/mensajes/pagina/1');
+    }
   }
 
   public function pagina($numeroPagina)
   {
-    $offset = obtenerOffset($numeroPagina);
+    $offset = obtenerOffsetMensajes($numeroPagina);
     $mensajes = $this->mensajeModel->getMensajes(-1, 6, $offset);
 
     $this->render('mensajes', [
@@ -30,9 +37,44 @@ class MensajesController extends Controller
     ], 'layout');
   }
 
+  public function enviados($numeroPagina)
+  {
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
+    if (isset($_GET['pag'])) {
+      $offset = obtenerOffsetMensajes($numeroPagina);
+      $mensajes = $this->mensajeModel->getMensajes(-1, 5, $offset);
+
+      $this->render('mensajes', [
+        'data' => [
+          'mensajes' => $mensajes
+        ]
+      ], 'layout');
+
+    } else {
+
+      $mensaje = $this->mensajeModel->getMensajes($numeroPagina, 5);
+      $respuesta = $this->respuestaModel->getRespuesta($numeroPagina);
+      if ($mensaje) {
+        $this->render('mensajeIndividual', [
+          'data' => [
+            'mensaje' => $mensaje,
+            'respuesta' => $respuesta,
+          ]
+        ], 'layout');
+      } else {
+        $this->render('notfound', [], 'layout');
+      }
+    }
+  }
+
   public function create()
   {
-    var_dump($_POST);
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
+    // var_dump($_POST);
     $data = array(
       'nombre' => $_POST['nombre'],
       'email' => $_POST['email'],
@@ -45,7 +87,9 @@ class MensajesController extends Controller
 
   public function borrar($id)
   {
-
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
     $this->mensajeModel->deleteById($id);
     header('Location: /newspaper/mensajes/home');
 
@@ -53,7 +97,9 @@ class MensajesController extends Controller
 
   public function mensajeIndividual($id)
   {
-
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
     $mensaje = $this->mensajeModel->getMensajes($id, 6);
     if ($mensaje) {
       $this->render('mensajeIndividual', [
@@ -68,6 +114,9 @@ class MensajesController extends Controller
 
   public function responder($id)
   {
+    if (!isLogged()) {
+      header("Location: /newspaper");
+    }
     $mensaje = $this->mensajeModel->getMensajes($id, 6);
     if ($mensaje) {
       $this->render('responderMensaje', [

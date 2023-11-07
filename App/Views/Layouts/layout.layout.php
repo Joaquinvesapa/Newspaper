@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>
-    <?php echo substr(PAGE, 1); ?>
+    <?php echo "Newspaper" ?>
   </title>
   <link rel="stylesheet" href="/newspaper/public/assets/css/styles.css">
 
@@ -19,21 +19,24 @@
     </a>
     <?php if (isLogged()): ?>
     <section class="section">
-      <nav>
+      <nav style="display:flex; align-items: center;">
         <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-        <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+        <a href="<?= URL_PATH ?>/categorias">Categorías</a>
         <a href="<?= URL_PATH ?>/contacto">Contacto</a>
         <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
       </nav>
-      <div>
-        <a class="sessionbtn" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesion</a>
+      <div style="display:flex; align-items: center;">
+        <p style="margin-right: 1.5rem;">
+          <?= $_SESSION["nombre_usuario"] ?>
+        </p>
+        <a class="sessionbtn" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesión</a>
       </div>
     </section>
     <?php else: ?>
     <section class='section'>
       <nav>
         <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-        <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+        <a href="<?= URL_PATH ?>/categorias">Categorías</a>
         <a href="<?= URL_PATH ?>/contacto">Contacto</a>
       </nav>
       <div>
@@ -61,12 +64,15 @@
   </header>
   <?php if (isLogged()): ?>
   <section class='section responsive none'>
-    <div>
-      <a class="sessionbtn end" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesion</a>
+    <div style="display:flex; align-items: center;">
+      <p style="margin-right: 1.5rem;">
+        <?= $_SESSION["nombre_usuario"] ?>
+      </p>
+      <a class="sessionbtn end" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesión</a>
     </div>
     <nav>
       <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-      <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+      <a href="<?= URL_PATH ?>/categorias">Categorías</a>
       <a href="<?= URL_PATH ?>/contacto">Contacto</a>
       <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
     </nav>
@@ -78,7 +84,7 @@
     </div>
     <nav>
       <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-      <a href="<?= URL_PATH ?>/categorias">Categorias</a>
+      <a href="<?= URL_PATH ?>/categorias">Categorías</a>
       <a href="<?= URL_PATH ?>/contacto">Contacto</a>
     </nav>
 

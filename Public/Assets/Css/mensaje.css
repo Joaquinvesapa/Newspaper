@@ -1,0 +1,45 @@
+.container-mensaje {
+  margin-block: 1rem;
+  padding-inline: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.container-mensaje > h3 {
+  margin-block: 1rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--grey);
+}
+.container-mensaje > p {
+  margin-block: 0.5rem;
+  padding-block: 0.5rem;
+  border-bottom: 1px solid var(--grey);
+}
+.container-mensaje div {
+  margin-block: 0.5rem;
+  padding: 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--grey);
+}
+
+.container-mensaje > a {
+  margin-block: 0.5rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
+  border: 1px solid var(--primary-darker);
+  width: fit-content;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: var(--primary);
+  transition: all 0.25s;
+}
+
+.container-mensaje > a:hover {
+  background-color: var(--primary-light);
+}
+
+@media (max-width: 1400px) {
+  .container-mensaje {
+    padding-inline: 0;
+  }
+}

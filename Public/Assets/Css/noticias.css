@@ -112,7 +112,8 @@
   text-decoration: underline;
 }
 
-.article-noticia-edit-link {
+.article-noticia-edit-link,
+.article-noticia-trash-link {
   background-color: var(--primary);
   display: grid;
   place-items: center;
@@ -121,7 +122,13 @@
   border-radius: 4px;
   transition: all 0.25s;
 }
-.article-noticia-edit-link:hover {
+.article-noticia-trash-link {
+  margin-left: 0.5rem;
+  border: none;
+  cursor: pointer;
+}
+.article-noticia-edit-link:hover,
+.article-noticia-trash-link:hover {
   background-color: var(--primary-darker);
 }
 

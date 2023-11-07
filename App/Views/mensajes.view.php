@@ -2,7 +2,6 @@
 <?php
 // Extraigo de los parametros la data, que es un array associativo
 $mensajes = $parameters['data']['mensajes'];
-
 $db = new Database();
 $conection = $db->getConnection();
 
@@ -18,13 +17,23 @@ if ($totalMensajes > 20) {
 <link rel="stylesheet" href="/newspaper/public/assets/css/mensajes.css">
 
 <h2>Mensajes</h2>
-
+<section class="buttons">
+  <a class="<?php if ($_GET["met"] == "pagina")
+      echo "selected" ?>" href="
+    <?= URL_PATH ?>/mensajes/pagina/1">Recibidos
+  </a>
+  <a class="<?php if ($_GET["met"] == "enviados")
+      echo "selected" ?>" href="<?= URL_PATH ?>/mensajes/enviados/pagina/1">Enviados</a>
+</section>
+<?php if (count($mensajes) != 0): ?>
 <section class="container-mensajes">
   <ul class="lista-mensajes">
     <?php foreach ($mensajes as $mensaje): ?>
     <!--  Si el estado es distinto a uno, continuo el loop y no renderizo el mensaje -->
-    <li class="mensaje">
-      <a href="<?= URL_PATH ?>/mensajes/<?= $mensaje["MensajeId"] ?>">
+    <li class="mensaje <?php if ($_GET["met"] == "enviados")
+          echo "enviado" ?>">
+      <a href=<?php echo $_GET["met"] != "enviados" ? URL_PATH . "/mensajes/{$mensaje["MensajeId"]}"
+          : URL_PATH . "/mensajes/enviados/{$mensaje["MensajeId"]}" ?>>
         <p class="nombre">
           <?php echo $mensaje['Nombre']; ?>
         </p>
@@ -35,6 +44,7 @@ if ($totalMensajes > 20) {
           <?= formatearFecha($mensaje['FechaHora']) ?>
         </p>
       </a>
+      <?php if ($_GET["met"] != "enviados"): ?>
       <button id="borrar" class="btnborrar" data-mensaje-id='<?php echo $mensaje['MensajeId'] ?>'><svg
           xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash" width="24" height="24"
           viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
@@ -46,6 +56,7 @@ if ($totalMensajes > 20) {
           <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
           <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
         </svg></button>
+      <?php endif ?>
     </li>
     <?php endforeach; ?>
   </ul>
@@ -66,7 +77,10 @@ if ($totalMensajes > 20) {
   </a>
   <?php endfor ?>
 </section>
+<?php else: ?>
+<h3>No hay mensajes para mostrar</h3>
 
+<?php endif ?>
 <script src="<?= URL_PATH ?>/public/assets/javascript/mensajes.js">
 
 </script>
