@@ -6,9 +6,9 @@ form.addEventListener("submit", (e) => {
   e.preventDefault()
   const password = document.querySelector("#password").value
   const username = document.querySelector("#username").value
-  const adminpassword = "" ?? document.querySelector("#adminpassword").value
-  if (adminpassword !== "") {
-    registrarUsuario(username, password, adminpassword)
+  const adminpassword = document.querySelector("#adminpassword")
+  if (adminpassword.value !== "") {
+    registrarUsuario(username, password, adminpassword.value)
   } else {
     console.log("login")
     checkLogin(username, password)

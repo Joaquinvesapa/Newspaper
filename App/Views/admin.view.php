@@ -19,10 +19,12 @@
         <input placeholder="Nombre de Usuario" type="text" name="username" id="username" required>
         <label for="password">Contraseña</label>
         <input placeholder="Contraseña" type="password" name="password" id="password" autocomplete="on" required>
+        <input placeholder="Contraseña de Administrador" type="password" name="adminpassword" id="adminpassword" hidden>
+
+        <a href="<?= URL_PATH ?>/admin/registro" style="font-size: 14px; color: var(--primary)">Registrar nuevo
+          usuario</a>
         <button>Ingresar</button>
       </form>
-      <!-- <a href="<?= URL_PATH ?>/admin/registro" style="font-size: 14px; color: var(--primary)">Registrar nuevo
-        usuario</a> -->
     </section>
   </main>
 </body>
