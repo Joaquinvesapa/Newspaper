@@ -14,7 +14,7 @@
   --primary-darker: #410f74;
   --primary-light: #a76be3;
   --primary-extra-light: #debffd;
-  --grey: #a099a8;
+  --grey: #525252;
 }
 @font-face {
   font-family: appleFont;
@@ -96,7 +96,7 @@ header > div {
 main {
   padding-inline: 7rem;
   min-height: 100vh;
-  top: 50px;
+  /* top: 50px; */
   padding-top: 60px;
   padding-bottom: 50px;
 }

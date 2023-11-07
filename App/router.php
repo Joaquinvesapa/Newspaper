@@ -55,7 +55,7 @@ class Router
   {
 
     $database = new Database();
-    
+
     $conection = $database->getConnection();
     $methodIndividual = str_replace("sController", '', $this->controller) . "Individual";
 
@@ -65,7 +65,7 @@ class Router
 
     if ($this->id) {
 
-      if ($method == "editar" || $method == "pagina") {
+      if ($method == "editar" || $method == "pagina" || $method == "borrar" || $method == "responder") {
 
         $controller->$method($this->id);
 

@@ -1,0 +1,115 @@
+h2 {
+  margin-block: 1rem;
+}
+
+.lista-mensajes {
+  width: 100%;
+}
+.mensaje {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--grey);
+}
+.mensaje a {
+  min-height: 40px;
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+.mensaje a:hover {
+  text-decoration: underline;
+}
+
+.nombre {
+  font-weight: bold;
+  flex-basis: 160px;
+  max-width: 160px;
+}
+.asunto {
+  flex: 1 1 auto;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#borrar {
+  width: fit-content;
+  cursor: pointer;
+  padding-inline: 5px;
+  background-color: transparent;
+  border: none;
+  color: var(--grey);
+  height: 30px;
+}
+dialog {
+  margin: auto;
+  border: 1px solid var(--grey);
+  padding: 20px;
+  border-radius: 5px;
+}
+dialog section {
+  height: 75px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+dialog button {
+  cursor: pointer;
+  color: white;
+  padding: 0.3rem 1rem;
+  border-radius: 4px;
+  transition: all 0.25s;
+}
+#confirm {
+  background-color: var(--primary);
+  border: 1px solid var(--primary-darker);
+}
+#confirm:hover {
+  background-color: var(--primary-light);
+}
+#cancel {
+  background-color: black;
+  border: 1px solid var(--grey);
+}
+#cancel:hover {
+  background-color: var(--navbar-btn-hover);
+}
+
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.4);
+}
+
+.mensajes-paginas {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.mensajes-paginas a {
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+  background-color: rgb(0, 0, 0);
+  color: rgba(255, 255, 255, 0.836);
+  font-weight: bold;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.25s;
+  margin: 0.5rem;
+}
+.mensajes-paginas a:first-child {
+  margin-left: 0;
+}
+
+.mensajes-paginas a:hover {
+  scale: 1.05;
+}
+.mensajes-paginas .selected {
+  background-color: white;
+  border: 1px solid var(--navbar-btn-hover);
+  color: black;
+}

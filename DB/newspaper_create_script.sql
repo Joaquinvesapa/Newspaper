@@ -22,7 +22,9 @@ CREATE TABLE estados(
 CREATE TABLE mensajes(
   id int PRIMARY KEY AUTO_INCREMENT,
   nombre varchar(30) NOT NULL,
+  asunto varchar(250) NOT NULL,
   email varchar(250) NOT NULL,
+  fecha_hora datetime DEFAULT now();
   mensaje mediumtext NOT NULL,
   estado_id int NOT NULL,
   FOREIGN KEY (estado_id) REFERENCES estados(id)

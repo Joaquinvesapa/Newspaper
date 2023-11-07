@@ -55,3 +55,30 @@ BEGIN
 END;
 //
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE sp_get_mensajes(
+    IN mensaje_id INT,
+    IN estado_mensaje INT,
+    IN offset INT
+)
+BEGIN
+    SELECT
+        m.id as MensajeId,
+        m.nombre as Nombre,
+        m.email as Email,
+        m.asunto as Asunto,
+        m.fecha_hora as FechaHora,
+        m.mensaje as Mensaje,
+        m.estado_id as EstadoId,
+        e.denominacion as Estado
+    FROM mensajes m
+    INNER JOIN estados e ON e.id = m.estado_id
+    WHERE m.estado_id = estado_mensaje 
+      AND (mensaje_id = -1 OR m.id = mensaje_id)
+    ORDER BY m.fecha_hora DESC
+    LIMIT 20 OFFSET offset;
+END;
+//
+DELIMITER ;
