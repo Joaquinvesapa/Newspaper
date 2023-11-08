@@ -68,8 +68,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } else {
       echo "";
     } ?>" required>
-    <label for="ubicacion">Ubicacion</label>
-    <input placeholder="ubicacion" type="text" name="ubicacion" id="ubicacion" value="<?php if (isset($noticia)) {
+    <label for="ubicacion">Ubicación</label>
+    <input placeholder="Ubicación" type="text" name="ubicacion" id="ubicacion" value="<?php if (isset($noticia)) {
       echo $noticia["Ubicacion"];
     } else {
       echo "";
@@ -82,9 +82,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo "";
     } ?>" required>
 
-    <label for="categoria">Categoria</label>
-    <select placeholder="Categoria" type="text" name="categoria" id="categoria" required>
-      <option value="" disabled selected hidden>Categoria</option>
+    <label for="categoria">Categoría</label>
+    <select placeholder="Categoría" type="text" name="categoria" id="categoria" required>
+      <option value="" disabled selected hidden>Categoría</option>
       <?php if (isset($categorias)): ?>
       <?php foreach ($categorias as $key => $categoria): ?>
       <option value=" <?= $categoria["CategoriaId"] ?>" <?php if (isset($noticia) && $noticia["CategoriaId"] == $categoria["CategoriaId"]) {

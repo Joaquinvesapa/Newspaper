@@ -41,16 +41,18 @@ input[type="file"] {
 .label-img {
   width: fit-content;
   cursor: pointer;
-  background: var(--primary-light);
+  background: var(--primary);
   color: white;
-  padding: 0.3rem;
+  padding-inline: 1rem;
+  padding-block: 0.5rem;
   border-radius: 0.3rem;
-  font-weight: bold;
+  border: 1px solid var(--primary-darker);
+  /* font-weight: bold; */
   font-size: 0.8rem;
   transition: all 0.25s;
 }
 .label-img:hover {
-  background: var(--primary-darker);
+  background: var(--primary-light);
 }
 .imagen {
   /* width: 100%; */
