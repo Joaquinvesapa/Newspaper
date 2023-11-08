@@ -20,15 +20,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $imagenUrl = moveImage($_FILES['imagen']);
 
   //Creamos la data que vamos a enviar
+  // 'fecha_hora' => $_POST['fecha'] != '' ? $_POST['fecha'],
   $data = array(
     'titulo' => $_POST['titulo'],
     'autor' => $_POST['autor'],
     'ubicacion' => $_POST['ubicacion'],
-    'fecha_hora' => $_POST['fecha'],
     'categoria_id' => $_POST['categoria'],
     'cuerpo' => $_POST['cuerpo'],
     'imagen_url' => $imagenUrl
   );
+  if ($_POST['fecha'] != '') {
+    $data['fecha_hora'] = $_POST['fecha'];
+  }
   if (isset($noticia)) {
     if ($_FILES['imagen']['name'] == '') {
       $data['imagen_url'] = $noticia['ImagenUrl'];
@@ -80,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       echo substr($noticia["FechaHora"], 0, 10);
     } else {
       echo "";
-    } ?>" required>
+    } ?>">
 
     <label for="categoria">Categoría</label>
     <select placeholder="Categoría" type="text" name="categoria" id="categoria" required>
