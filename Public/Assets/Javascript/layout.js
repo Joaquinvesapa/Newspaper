@@ -33,3 +33,12 @@ window.addEventListener("DOMContentLoaded", () => {
 //     })
 //     .catch((e) => console.log(e));
 // };
+
+let prevUrl = document.referrer
+const volverbtn = document.getElementById("volver")
+volverbtn.addEventListener("click", () => {
+  if (prevUrl.indexOf(window.location.host) !== -1) {
+    // Ir a la página anterior
+    window.history.back()
+  }
+})

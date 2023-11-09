@@ -114,6 +114,7 @@
 
 .article-noticia-edit-link,
 .article-noticia-trash-link {
+  font-size: px;
   background-color: var(--primary);
   display: grid;
   place-items: center;
@@ -130,6 +131,11 @@
 .article-noticia-edit-link:hover,
 .article-noticia-trash-link:hover {
   background-color: var(--primary-darker);
+}
+.article-noticia-edit-link svg,
+.article-noticia-trash-link svg {
+  width: 19px;
+  height: 19px;
 }
 
 .noticias-paginas {

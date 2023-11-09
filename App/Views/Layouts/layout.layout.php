@@ -1,3 +1,9 @@
+<?php
+// echo "<pre>";
+// var_dump($_SERVER);
+// echo "</pre>";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,38 +19,37 @@
 </head>
 
 <body>
-  <script src="/newspaper/Public/Assets/javascript/layout.js"></script>
   <header>
     <a href="/newspaper">
       Newspaper
     </a>
     <?php if (isLogged()): ?>
-      <section class="section">
-        <nav style="display:flex; align-items: center;">
-          <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-          <a href="<?= URL_PATH ?>/categorias">Categorías</a>
-          <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-          <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
-        </nav>
-        <div style="display:flex; align-items: center;">
-          <p style="margin-right: 1.5rem;">
-            <?= $_SESSION["nombre_usuario"] ?>
-          </p>
-          <a class="sessionbtn" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesión</a>
-        </div>
-      </section>
+    <section class="section">
+      <nav style="display:flex; align-items: center;">
+        <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
+        <a href="<?= URL_PATH ?>/categorias">Categorías</a>
+        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+        <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
+      </nav>
+      <div style="display:flex; align-items: center;">
+        <p style="margin-right: 1.5rem;">
+          <?= $_SESSION["nombre_usuario"] ?>
+        </p>
+        <a class="sessionbtn" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesión</a>
+      </div>
+    </section>
     <?php else: ?>
-      <section class='section'>
-        <nav>
-          <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-          <a href="<?= URL_PATH ?>/categorias">Categorías</a>
-          <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-        </nav>
-        <div>
-          <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
-        </div>
+    <section class='section'>
+      <nav>
+        <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
+        <a href="<?= URL_PATH ?>/categorias">Categorías</a>
+        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+      </nav>
+      <div>
+        <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
+      </div>
 
-      </section>
+    </section>
 
     <?php endif ?>
     <button class="menu"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-menu-2" width="24"
@@ -64,40 +69,50 @@
       </svg></button>
   </header>
   <?php if (isLogged()): ?>
-    <section class='section responsive none'>
-      <div style="display:flex; align-items: center;">
-        <p style="margin-right: 1.5rem;">
-          <?= $_SESSION["nombre_usuario"] ?>
-        </p>
-        <a class="sessionbtn end" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesión</a>
-      </div>
-      <nav>
-        <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-        <a href="<?= URL_PATH ?>/categorias">Categorías</a>
-        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-        <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
-      </nav>
-    </section>
+  <section class='section responsive none'>
+    <div style="display:flex; align-items: center;">
+      <p style="margin-right: 1.5rem;">
+        <?= $_SESSION["nombre_usuario"] ?>
+      </p>
+      <a class="sessionbtn end" href="<?= URL_PATH ?>/admin/logout">Cerrar Sesión</a>
+    </div>
+    <nav>
+      <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
+      <a href="<?= URL_PATH ?>/categorias">Categorías</a>
+      <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+      <a href="<?= URL_PATH ?>/mensajes">Mensajes</a>
+    </nav>
+  </section>
   <?php else: ?>
-    <section class="section responsive none">
-      <div>
-        <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
-      </div>
-      <nav>
-        <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
-        <a href="<?= URL_PATH ?>/categorias">Categorías</a>
-        <a href="<?= URL_PATH ?>/contacto">Contacto</a>
-      </nav>
+  <section class="section responsive none">
+    <div>
+      <a id="loginbtn" class="sessionbtn" href="<?= URL_PATH ?>/admin">Administración</a>
+    </div>
+    <nav>
+      <a href="<?= URL_PATH ?>/noticias/pagina/1">Noticias</a>
+      <a href="<?= URL_PATH ?>/categorias">Categorías</a>
+      <a href="<?= URL_PATH ?>/contacto">Contacto</a>
+    </nav>
 
-    </section>
+  </section>
   <?php endif; ?>
   <main>
-    <!-- <button id="mostrarmenu">Mostrar menu</button> -->
+    <?php if ($_SERVER["REQUEST_URI"] != "/newspaper/" && $_SERVER["REQUEST_URI"] != "/newspaper/admin" && $_SERVER["REQUEST_URI"] != "/newspaper/admin/register"): ?>
+    <button id="volver" class="btnvolver"><svg xmlns="http://www.w3.org/2000/svg"
+        class="icon icon-tabler icon-tabler-arrow-narrow-left" width="24" height="24" viewBox="0 0 24 24"
+        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+        <path d="M5 12l14 0"></path>
+        <path d="M5 12l4 4"></path>
+        <path d="M5 12l4 -4"></path>
+      </svg></button>
+    <?php endif ?>
     <?php require_once($content); ?>
   </main>
   <footer>
     <p>Joaquin Vesco Aparicio © 2023 </p>
   </footer>
 </body>
+<script src="/newspaper/Public/Assets/javascript/layout.js"></script>
 
 </html>
